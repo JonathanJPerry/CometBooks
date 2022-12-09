@@ -24,13 +24,16 @@ public final class MainMenuScreen implements Screen {
         System.out.println("1. My Books for Sale");
         System.out.println("2. Transactions");
 
-        String option = scanner.next();
-        if (option.equals("1")) {
-            display.switchScreen(MyBooksForSaleScreen.create(), controller);
-        } else if (option.equals("2")) {
-            display.switchScreen(TransactionsScreen.create(), controller);
-        } else {
-            System.out.println("Invalid input, please try again.");
+        switch (scanner.next()) {
+            case "1":
+                display.switchScreen(MyBooksForSaleScreen.create(), controller);
+                break;
+            case "2":
+                display.switchScreen(TransactionsScreen.create(), controller);
+                break;
+            default:
+                invalidInput();
+                break;
         }
     }
 }

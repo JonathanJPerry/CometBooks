@@ -16,7 +16,7 @@ public final class CometBooks {
     public static void main(String[] args) {
         SCREEN_DISPLAY.switchScreen(INITIAL_SCREEN, CONTROLLER);
         while (true) {
-            SCREEN_DISPLAY.getScreen().handleInput(SCANNER, CONTROLLER, SCREEN_DISPLAY);
+            SCREEN_DISPLAY.getCurrentScreen().handleInput(SCANNER, CONTROLLER, SCREEN_DISPLAY);
         }
     }
 }

@@ -2,23 +2,38 @@ package edu.utdallas.cometbooks.ui;
 
 import edu.utdallas.cometbooks.Controller;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public final class ScreenDisplay {
     public static ScreenDisplay createBlank() {
         return new ScreenDisplay(null);
     }
 
-    private Screen screen;
+    private final Deque<Screen> screenStack = new ArrayDeque<>();
 
     private ScreenDisplay(Screen screen) {
-        this.screen = screen;
+        if (screen != null) {
+            screenStack.add(screen);
+        }
     }
 
-    public Screen getScreen() {
-        return screen;
+    public Screen getCurrentScreen() {
+        return screenStack.peekLast();
     }
 
     public void switchScreen(Screen screen, Controller controller) {
-        this.screen = screen;
+        screenStack.add(screen);
         screen.onOpen(controller);
+    }
+
+    public void goBack(Controller controller) {
+        screenStack.pollLast();
+
+        if (screenStack.isEmpty()) {
+            return;
+        }
+
+        getCurrentScreen().onOpen(controller);
     }
 }
