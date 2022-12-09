@@ -1,8 +1,4 @@
-enum DepartmentEnum {
-    CS,
-    ATEC,
-    MECHE
-}
+package edu.utdallas.cometbooks.student;
 
 public class UTDStudent {
     public String name;

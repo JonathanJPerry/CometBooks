@@ -1,9 +1,8 @@
-import java.util.Date;
+package edu.utdallas.cometbooks.chat;
 
-class Message {
-    public String text;
-    public Date date;
-}
+import edu.utdallas.cometbooks.student.UTDStudent;
+
+import java.util.Date;
 
 public class ChatLog {
     public UTDStudent sender;

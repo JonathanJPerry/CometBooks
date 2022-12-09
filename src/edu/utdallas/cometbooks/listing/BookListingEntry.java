@@ -1,20 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-
-enum ConditionEnum {
-    New,
-    LikeNew,
-    Good,
-    Fair,
-    Poor
-}
-
-enum StatusEnum {
-    PENDING,
-    ONHOLD,
-    SOLD,
-    AVAILABLE
-}
+package edu.utdallas.cometbooks.listing;
 
 public class BookListingEntry {
     private String seller_contact_info;

@@ -1,14 +1,8 @@
+package edu.utdallas.cometbooks.book;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-class BookRecord {
-    public String title;
-    public String isbn;
-    public int year;
-    public String author;
-    public double suggested_retail_price;
-}
 
 public class BookDatabase {
     HashMap<String,BookRecord> BookRecords = new HashMap<>();
