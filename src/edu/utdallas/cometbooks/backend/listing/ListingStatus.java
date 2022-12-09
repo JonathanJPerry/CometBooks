@@ -1,4 +1,4 @@
-package edu.utdallas.cometbooks.listing;
+package edu.utdallas.cometbooks.backend.listing;
 
 public enum ListingStatus {
     PENDING,

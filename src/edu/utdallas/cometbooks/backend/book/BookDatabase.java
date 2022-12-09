@@ -1,11 +1,11 @@
-package edu.utdallas.cometbooks.book;
+package edu.utdallas.cometbooks.backend.book;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class BookDatabase {
-    HashMap<String,BookRecord> bookRecords = new HashMap<>();
+    HashMap<String, BookRecord> bookRecords = new HashMap<>();
 
     public List<BookRecord> fetchRelevantBooks(List<String> courseBookTitles)    {
         List<BookRecord> bookRecordList = new ArrayList<>();

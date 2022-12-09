@@ -1,12 +1,12 @@
-package edu.utdallas.cometbooks;
+package edu.utdallas.cometbooks.backend;
 
-import edu.utdallas.cometbooks.book.BookDatabase;
-import edu.utdallas.cometbooks.book.BookRecord;
-import edu.utdallas.cometbooks.chat.ChatLog;
-import edu.utdallas.cometbooks.listing.BookCatalog;
-import edu.utdallas.cometbooks.listing.BookListingEntry;
-import edu.utdallas.cometbooks.listing.BookCondition;
-import edu.utdallas.cometbooks.student.UTDStudent;
+import edu.utdallas.cometbooks.backend.book.BookDatabase;
+import edu.utdallas.cometbooks.backend.book.BookRecord;
+import edu.utdallas.cometbooks.backend.chat.ChatLog;
+import edu.utdallas.cometbooks.backend.listing.BookCatalog;
+import edu.utdallas.cometbooks.backend.listing.BookListingEntry;
+import edu.utdallas.cometbooks.backend.listing.BookCondition;
+import edu.utdallas.cometbooks.data.student.UTDStudent;
 
 public class Controller {
     public static Controller create() {

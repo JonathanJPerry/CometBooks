@@ -1,6 +1,6 @@
-package edu.utdallas.cometbooks.ui;
+package edu.utdallas.cometbooks.frontend.screens;
 
-import edu.utdallas.cometbooks.Controller;
+import edu.utdallas.cometbooks.backend.Controller;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

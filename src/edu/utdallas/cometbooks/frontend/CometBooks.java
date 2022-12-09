@@ -1,8 +1,9 @@
-package edu.utdallas.cometbooks;
+package edu.utdallas.cometbooks.frontend;
 
-import edu.utdallas.cometbooks.ui.MainMenuScreen;
-import edu.utdallas.cometbooks.ui.Screen;
-import edu.utdallas.cometbooks.ui.ScreenDisplay;
+import edu.utdallas.cometbooks.backend.Controller;
+import edu.utdallas.cometbooks.frontend.screens.MainMenuScreen;
+import edu.utdallas.cometbooks.frontend.screens.Screen;
+import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 
 import java.util.Scanner;
 

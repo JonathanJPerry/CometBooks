@@ -1,4 +1,4 @@
-package edu.utdallas.cometbooks.chat;
+package edu.utdallas.cometbooks.backend.chat;
 
 public class Notification {
     public int id;

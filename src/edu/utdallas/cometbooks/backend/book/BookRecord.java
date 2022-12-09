@@ -1,4 +1,4 @@
-package edu.utdallas.cometbooks.book;
+package edu.utdallas.cometbooks.backend.book;
 
 public class BookRecord {
     public String title;

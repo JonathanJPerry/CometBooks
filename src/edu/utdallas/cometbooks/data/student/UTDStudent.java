@@ -1,4 +1,4 @@
-package edu.utdallas.cometbooks.student;
+package edu.utdallas.cometbooks.data.student;
 
 public class UTDStudent {
     public String name;
