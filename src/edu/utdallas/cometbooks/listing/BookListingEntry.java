@@ -2,23 +2,23 @@ package edu.utdallas.cometbooks.listing;
 
 public class BookListingEntry {
     private String seller_contact_info;
-    private ConditionEnum condition;
+    private BookCondition condition;
     private String description;
-    private StatusEnum status;
+    private ListingStatus status;
     private double price;
 
     public void updateSuggestedPrice(double price)   {
         this.price = price;
     }
 
-    public void updateListingInfo(ConditionEnum condition, double price, String description) {
+    public void updateListingInfo(BookCondition condition, double price, String description) {
         this.condition = condition;
         this.price = price;
         this.description = description;
 
     }
 
-    public void updateStatus(StatusEnum status)   {
+    public void updateStatus(ListingStatus status)   {
         this.status = status;
     }
 
@@ -30,11 +30,11 @@ public class BookListingEntry {
         return description;
     }
 
-    public ConditionEnum getCondition() {
+    public BookCondition getCondition() {
         return condition;
     }
 
-    public StatusEnum getStatus() {
+    public ListingStatus getStatus() {
         return status;
     }
 }

@@ -1,6 +1,6 @@
 package edu.utdallas.cometbooks.listing;
 
-public enum StatusEnum {
+public enum ListingStatus {
     PENDING,
     ONHOLD,
     SOLD,

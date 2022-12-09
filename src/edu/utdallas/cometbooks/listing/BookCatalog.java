@@ -23,12 +23,12 @@ public class BookCatalog {
     }
 
     public void completeTransaction(BookListingEntry book)  {
-        if(book.getStatus() == StatusEnum.PENDING)   {
+        if(book.getStatus() == ListingStatus.PENDING)   {
             //the second of the buyer/seller finished the transaction
-            book.updateStatus(StatusEnum.SOLD);
-        } else if (book.getStatus() == StatusEnum.ONHOLD)   {
+            book.updateStatus(ListingStatus.SOLD);
+        } else if (book.getStatus() == ListingStatus.ONHOLD)   {
             //the first of the buyer/seller finished the transaction
-            book.updateStatus(StatusEnum.PENDING);
+            book.updateStatus(ListingStatus.PENDING);
         }
     }
 

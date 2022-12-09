@@ -2,6 +2,6 @@ package edu.utdallas.cometbooks.student;
 
 public class UTDStudent {
     public String name;
-    public DepartmentEnum department;
+    public Department department;
     public String email;
 }

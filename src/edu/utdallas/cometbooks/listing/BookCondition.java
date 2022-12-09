@@ -1,6 +1,6 @@
 package edu.utdallas.cometbooks.listing;
 
-public enum ConditionEnum {
+public enum BookCondition {
     New,
     LikeNew,
     Good,

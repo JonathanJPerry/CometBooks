@@ -5,7 +5,7 @@ import edu.utdallas.cometbooks.book.BookRecord;
 import edu.utdallas.cometbooks.chat.ChatLog;
 import edu.utdallas.cometbooks.listing.BookCatalog;
 import edu.utdallas.cometbooks.listing.BookListingEntry;
-import edu.utdallas.cometbooks.listing.ConditionEnum;
+import edu.utdallas.cometbooks.listing.BookCondition;
 import edu.utdallas.cometbooks.student.UTDStudent;
 
 public class Controller {
@@ -27,7 +27,7 @@ public class Controller {
 
     }
 
-    public void selectCondition(ConditionEnum condition) {
+    public void selectCondition(BookCondition condition) {
 
     }
 

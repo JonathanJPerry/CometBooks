@@ -1,6 +1,6 @@
 package edu.utdallas.cometbooks.student;
 
-public enum DepartmentEnum {
+public enum Department {
     CS,
     ATEC,
     MECHE
