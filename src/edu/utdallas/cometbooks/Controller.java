@@ -9,11 +9,18 @@ import edu.utdallas.cometbooks.listing.BookCondition;
 import edu.utdallas.cometbooks.student.UTDStudent;
 
 public class Controller {
+    public static Controller create() {
+        return new Controller();
+    }
+
     //TODO these aren't present in the diagram.
     // Should they be converted to singletons?
     BookCatalog bookCatalog = new BookCatalog();
     BookDatabase bookDatabase = new BookDatabase();
     ChatLog chatLog = new ChatLog();
+
+    private Controller() {
+    }
 
     public void selectMyBookForSaleTab() {
 
