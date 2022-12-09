@@ -1,7 +1,7 @@
 package edu.utdallas.cometbooks.listing;
 
 public class BookListingEntry {
-    private String seller_contact_info;
+    private String sellerContactInfo;
     private BookCondition condition;
     private String description;
     private ListingStatus status;

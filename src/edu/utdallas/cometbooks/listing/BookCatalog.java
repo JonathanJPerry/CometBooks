@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookCatalog {
-    public List<BookListingEntry> BookList = new ArrayList<>();
+    public List<BookListingEntry> bookList = new ArrayList<>();
 
     public void addBook(BookListingEntry book)  {
 
     }
 
     public BookListingEntry fetchBookListing(BookListingEntry book) {
-        return BookList.get(0);
+        return bookList.get(0);
     }
 
     public void remove(BookListingEntry book)   {

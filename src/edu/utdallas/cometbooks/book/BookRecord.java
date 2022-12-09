@@ -5,5 +5,5 @@ public class BookRecord {
     public String isbn;
     public int year;
     public String author;
-    public double suggested_retail_price;
+    public double suggestedRetailPrice;
 }
