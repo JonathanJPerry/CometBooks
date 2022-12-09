@@ -24,15 +24,9 @@ public final class MyBooksForSaleScreen implements Screen {
         System.out.println("2. Go back.");
 
         switch (scanner.next()) {
-            case "1":
-                display.switchScreen(AddBookForSaleScreen.create(), controller);
-                break;
-            case "2":
-                display.goBack(controller);
-                break;
-            default:
-                invalidInput();
-                break;
+            case "1" -> display.switchScreen(AddBookForSaleScreen.create(), controller);
+            case "2" -> display.goBack(controller);
+            default -> invalidInput();
         }
     }
 }
