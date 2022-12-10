@@ -23,15 +23,15 @@ project. The Use Case is defined as follows:
 > 9. The seller clicks to list the book for sale. 
 > 10. The system shows a success message. 
 >
-> **extension point: Update Listing**
+> *extension point: Update Listing*
 > 
-> **extension point: Remove Listing** 
+> *extension point: Remove Listing*
 > 
 > 11. The buyer puts the book on hold. 
 > 
-> **extension point: Cancel Hold**
+> *extension point: Cancel Hold*
 > 
-> **include(Exchange Message)**
+> *include(Exchange Message)*
 > 
 > 12. The seller clicks the “shopping cart” icon to go to transactions. 
 > 13. The seller selects the transaction. 
