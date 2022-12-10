@@ -53,6 +53,8 @@ public final class MainMenuScreen implements Screen {
         } else if (option.equals("2")) {
             display.switchScreen(TransactionsScreen.createFor(netId), controller);
         } else if (option.equals("3")) {
+            System.out.println("You have been logged out.");
+            System.out.println();
             display.goBack(controller);
         } else if (bookListingsForOption.containsKey(option)) {
             display.switchScreen(ViewListingScreen.createFor(netId, bookListingsForOption.get(option)), controller);
