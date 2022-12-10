@@ -4,6 +4,7 @@ import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookCatalog {
     public static BookCatalog createEmpty() {
@@ -25,6 +26,12 @@ public class BookCatalog {
 
     public void addListing(BookListingEntry listing) {
         books.add(listing);
+    }
+
+    public List<BookListingEntry> fetchListingsFor(String netId) {
+        return books.stream()
+                .filter(listing -> listing.getSellerNetId().equals(netId))
+                .collect(Collectors.toList());
     }
 
     public void remove(BookListingEntry book)   {

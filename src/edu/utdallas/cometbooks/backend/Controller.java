@@ -4,7 +4,6 @@ import edu.utdallas.cometbooks.backend.book.BookService;
 import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.backend.chat.ChatLog;
-import edu.utdallas.cometbooks.backend.listing.BookCatalog;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
@@ -38,6 +37,10 @@ public class Controller {
     public List<BookRecord> fetchBooks(String netId) {
         List<String> isbns = studentService.getBooks(netId);
         return bookService.fetchBookRecords(isbns);
+    }
+
+    public List<BookListingEntry> fetchBookListings(String netId) {
+        return bookCatalogService.fetchBookListings(netId);
     }
 
     public void listForSale(BookListingEntry entry) {
