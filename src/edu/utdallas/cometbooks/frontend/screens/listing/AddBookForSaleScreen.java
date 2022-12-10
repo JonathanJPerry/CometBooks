@@ -1,9 +1,11 @@
-package edu.utdallas.cometbooks.frontend.screens;
+package edu.utdallas.cometbooks.frontend.screens.listing;
 
 import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
+import edu.utdallas.cometbooks.frontend.screens.Screen;
+import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 
 import java.util.*;
 

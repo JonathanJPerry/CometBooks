@@ -1,6 +1,8 @@
-package edu.utdallas.cometbooks.frontend.screens;
+package edu.utdallas.cometbooks.frontend.screens.transactions;
 
 import edu.utdallas.cometbooks.backend.Controller;
+import edu.utdallas.cometbooks.frontend.screens.Screen;
+import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 
 import java.util.Scanner;
 
