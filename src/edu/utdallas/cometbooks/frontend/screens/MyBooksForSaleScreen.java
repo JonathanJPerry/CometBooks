@@ -26,7 +26,7 @@ public final class MyBooksForSaleScreen implements Screen {
         listingForOption.clear();
         System.out.print("The my books for sale tab has been open. ");
 
-        List<BookListingEntry> listings = controller.fetchBookListings(netId);
+        List<BookListingEntry> listings = controller.fetchBookListingsBy(netId);
         if (listings.isEmpty()) {
             System.out.println("You have no books for sale.");
         } else {

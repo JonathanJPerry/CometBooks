@@ -1,6 +1,5 @@
 package edu.utdallas.cometbooks.frontend.screens;
 
-import com.sun.security.jgss.GSSUtil;
 import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
@@ -28,7 +27,7 @@ public final class AddBookForSaleScreen implements Screen {
 
     @Override
     public void onOpen(Controller controller) {
-        List<BookRecord> books = controller.fetchBooks(netId);
+        List<BookRecord> books = controller.fetchRelevantBooks(netId);
         for (int i = 0; i < books.size(); i++) {
             bookRecordForChoice.put(i + 1, books.get(i));
         }

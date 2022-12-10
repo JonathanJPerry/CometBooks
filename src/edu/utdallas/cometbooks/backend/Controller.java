@@ -37,12 +37,12 @@ public class Controller {
         return studentService.logIn(netId, password);
     }
 
-    public List<BookRecord> fetchBooks(String netId) {
+    public List<BookRecord> fetchRelevantBooks(String netId) {
         List<String> isbns = studentService.getBooks(netId);
         return bookService.fetchBookRecords(isbns);
     }
 
-    public List<BookListingEntry> fetchBookListings(String netId) {
+    public List<BookListingEntry> fetchBookListingsBy(String netId) {
         return bookCatalogService.fetchActiveListingsBy(netId);
     }
 
