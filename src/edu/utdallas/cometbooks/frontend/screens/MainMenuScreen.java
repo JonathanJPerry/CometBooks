@@ -28,7 +28,7 @@ public final class MainMenuScreen implements Screen {
 
         List<BookListingEntry> bookListings = controller.fetchRelevantListings(netId);
         for (int i = 0; i < bookListings.size(); i++) {
-            bookListingsForOption.put((i + 2) + "", bookListings.get(i));
+            bookListingsForOption.put((i + 3) + "", bookListings.get(i));
         }
     }
 
@@ -37,6 +37,7 @@ public final class MainMenuScreen implements Screen {
         System.out.println("Select a menu option to choose which tab to go to:");
         System.out.println("1. My Books for Sale");
         System.out.println("2. Transactions");
+        System.out.println("3. Log out");
 
         if (bookListingsForOption.size() > 0) {
             System.out.println();
@@ -51,6 +52,8 @@ public final class MainMenuScreen implements Screen {
             display.switchScreen(MyBooksForSaleScreen.createFor(netId), controller);
         } else if (option.equals("2")) {
             display.switchScreen(TransactionsScreen.createFor(netId), controller);
+        } else if (option.equals("3")) {
+            display.goBack(controller);
         } else if (bookListingsForOption.containsKey(option)) {
             display.switchScreen(ViewListingScreen.createFor(netId, bookListingsForOption.get(option)), controller);
         } else {
