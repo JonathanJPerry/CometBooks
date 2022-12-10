@@ -106,11 +106,12 @@ public final class AddBookForSaleScreen implements Screen {
 
         bookRecord = bookRecordOptional.get();
         System.out.println("You chose to sell " + bookRecord.getTitle() + ".");
+        System.out.println();
     }
 
     private void inquireForBookCondition(Scanner scanner, Controller controller, ScreenDisplay display) {
         System.out.println("Now we need to know the book's condition. Your options are:");
-        Arrays.stream(BookCondition.values()).forEach(condition -> System.out.println((condition.ordinal() + 1) + ". " + condition.name()));
+        Arrays.stream(BookCondition.values()).forEach(condition -> System.out.println((condition.ordinal() + 1) + ". " + condition.getDisplayName()));
 
         System.out.print("Enter the number of the condition of the book you want to sell. If you aren't interested anymore, type \"go back\": ");
         String conditionNumber = scanner.nextLine();
@@ -130,7 +131,8 @@ public final class AddBookForSaleScreen implements Screen {
         }
 
         bookCondition = bookConditionOptional.get();
-        System.out.println("You chose to sell " + bookRecord.getTitle() + " in " + bookCondition.name().toLowerCase() + " condition.");
+        System.out.println("You chose to sell " + bookRecord.getTitle() + " in " + bookCondition.getDisplayName().toLowerCase() + " condition.");
+        System.out.println();
     }
 
     private void inquireForPrice(Scanner scanner, Controller controller, ScreenDisplay display) {
@@ -150,6 +152,7 @@ public final class AddBookForSaleScreen implements Screen {
         }
 
         System.out.println("You chose to sell " + bookRecord.getTitle() + " for $" + String.format("%.2f", price) + ".");
+        System.out.println();
     }
 
     private void inquireForDescription(Scanner scanner, Controller controller, ScreenDisplay display) {
@@ -163,5 +166,6 @@ public final class AddBookForSaleScreen implements Screen {
 
         description = descriptionString;
         System.out.println("You chose to sell " + bookRecord.getTitle() + " with the description \"" + description + "\".");
+        System.out.println();
     }
 }
