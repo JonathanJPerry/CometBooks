@@ -26,7 +26,7 @@ public final class MyBooksForSaleScreen implements Screen {
         System.out.println("1. Add a new book for sale.");
         System.out.println("2. Go back.");
 
-        switch (scanner.next()) {
+        switch (scanner.nextLine()) {
             case "1" -> display.switchScreen(AddBookForSaleScreen.createFor(netId), controller);
             case "2" -> display.goBack(controller);
             default -> invalidInput();

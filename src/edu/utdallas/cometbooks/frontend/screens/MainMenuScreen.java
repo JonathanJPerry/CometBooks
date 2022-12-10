@@ -28,7 +28,7 @@ public final class MainMenuScreen implements Screen {
         System.out.println("1. My Books for Sale");
         System.out.println("2. Transactions");
 
-        switch (scanner.next()) {
+        switch (scanner.nextLine()) {
             case "1" -> display.switchScreen(MyBooksForSaleScreen.createFor(netId), controller);
             case "2" -> display.switchScreen(TransactionsScreen.createFor(netId), controller);
             default -> invalidInput();
