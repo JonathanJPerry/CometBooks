@@ -36,6 +36,13 @@ public class BookCatalog {
                 .collect(Collectors.toList());
     }
 
+    public List<BookListingEntry> fetchActiveListingsFor(String isbn) {
+        return books.stream()
+                .filter(listing -> listing.getBookRecord().getIsbn().equals(isbn))
+                .filter(listing -> listing.getStatus() != ListingStatus.SOLD)
+                .collect(Collectors.toList());
+    }
+
     public List<BookListingEntry> fetchSoldListingsFor(String isbn) {
         return books.stream()
                 .filter(listing -> listing.getBookRecord().getIsbn().equals(isbn))

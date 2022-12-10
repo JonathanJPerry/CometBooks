@@ -1,9 +1,11 @@
 package edu.utdallas.cometbooks.backend.listing;
 
+import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
@@ -25,6 +27,13 @@ public final class BookCatalogService {
 
     public List<BookListingEntry> fetchActiveListingsBy(String netId) {
         return catalog.fetchActiveListingsBy(netId);
+    }
+
+    public List<BookListingEntry> fetchActiveListingsFor(String buyerNetId, List<String> isbns) {
+        return isbns.stream()
+                .flatMap(isbn -> catalog.fetchActiveListingsFor(isbn).stream())
+                .filter(listing -> !listing.getSellerNetId().equals(buyerNetId))
+                .collect(Collectors.toList());
     }
 
     public double fetchSuggestedPrice(String isbn, List<OnlineRetailerController> onlineRetailers) {

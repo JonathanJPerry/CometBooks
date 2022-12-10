@@ -46,6 +46,11 @@ public class Controller {
         return bookCatalogService.fetchActiveListingsBy(netId);
     }
 
+    public List<BookListingEntry> fetchRelevantListings(String netId) {
+        List<String> isbns = studentService.getBooks(netId);
+        return bookCatalogService.fetchActiveListingsFor(netId, isbns);
+    }
+
     public double fetchSuggestedPrice(String isbn) {
         return bookCatalogService.fetchSuggestedPrice(isbn, onlineRetailers);
     }

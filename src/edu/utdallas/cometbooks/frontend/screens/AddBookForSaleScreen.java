@@ -21,7 +21,6 @@ public final class AddBookForSaleScreen implements Screen {
     private String description;
 
     private AddBookForSaleScreen(String netId) {
-        // todo suggested price
         this.netId = netId;
     }
 
