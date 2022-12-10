@@ -5,11 +5,14 @@ import edu.utdallas.cometbooks.backend.Controller;
 import java.util.Scanner;
 
 public final class MyBooksForSaleScreen implements Screen {
-    public static MyBooksForSaleScreen create() {
-        return new MyBooksForSaleScreen();
+    public static MyBooksForSaleScreen createFor(String netId) {
+        return new MyBooksForSaleScreen(netId);
     }
 
-    private MyBooksForSaleScreen() {
+    private final String netId;
+
+    private MyBooksForSaleScreen(String netId) {
+        this.netId = netId;
     }
 
     @Override
@@ -24,7 +27,7 @@ public final class MyBooksForSaleScreen implements Screen {
         System.out.println("2. Go back.");
 
         switch (scanner.next()) {
-            case "1" -> display.switchScreen(AddBookForSaleScreen.create(), controller);
+            case "1" -> display.switchScreen(AddBookForSaleScreen.createFor(netId), controller);
             case "2" -> display.goBack(controller);
             default -> invalidInput();
         }

@@ -5,16 +5,21 @@ import edu.utdallas.cometbooks.backend.Controller;
 import java.util.Scanner;
 
 public final class MainMenuScreen implements Screen {
-    public static MainMenuScreen create() {
-        return new MainMenuScreen();
+    public static MainMenuScreen createFor(String netId, String name) {
+        return new MainMenuScreen(netId, name);
     }
 
-    private MainMenuScreen() {
+    private final String netId;
+    private final String name;
+
+    private MainMenuScreen(String netId, String name) {
+        this.netId = netId;
+        this.name = name;
     }
 
     @Override
     public void onOpen(Controller controller) {
-        System.out.println("Welcome to CometBooks!");
+        System.out.println("Welcome to CometBooks, " + name + "!");
     }
 
     @Override
@@ -24,8 +29,8 @@ public final class MainMenuScreen implements Screen {
         System.out.println("2. Transactions");
 
         switch (scanner.next()) {
-            case "1" -> display.switchScreen(MyBooksForSaleScreen.create(), controller);
-            case "2" -> display.switchScreen(TransactionsScreen.create(), controller);
+            case "1" -> display.switchScreen(MyBooksForSaleScreen.createFor(netId), controller);
+            case "2" -> display.switchScreen(TransactionsScreen.createFor(netId), controller);
             default -> invalidInput();
         }
     }

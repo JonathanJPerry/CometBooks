@@ -6,10 +6,12 @@ import edu.utdallas.cometbooks.backend.chat.ChatLog;
 import edu.utdallas.cometbooks.backend.listing.BookCatalog;
 import edu.utdallas.cometbooks.backend.listing.BookListingEntry;
 import edu.utdallas.cometbooks.backend.listing.BookCondition;
-import edu.utdallas.cometbooks.backend.student.StudentDatabase;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
 import edu.utdallas.cometbooks.data.LogInResponse;
+import edu.utdallas.cometbooks.data.LogInResponseType;
+
+import java.util.List;
 
 public class Controller {
     public static Controller createWith(StudentService service) {
@@ -31,12 +33,8 @@ public class Controller {
         return service.logIn(netId, password);
     }
 
-    public void selectMyBookForSaleTab() {
-
-    }
-
-    public void selectAddBookIcon() {
-
+    public List<String> fetchBooks(String netId) {
+        return service.getBooks(netId);
     }
 
     public void selectBook(BookRecord b) {

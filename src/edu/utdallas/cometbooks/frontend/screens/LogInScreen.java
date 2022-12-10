@@ -2,6 +2,7 @@ package edu.utdallas.cometbooks.frontend.screens;
 
 import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.LogInResponse;
+import edu.utdallas.cometbooks.data.LogInResponseType;
 
 import java.util.Scanner;
 
@@ -27,12 +28,12 @@ public class LogInScreen implements Screen {
         String password = scanner.nextLine();
 
         LogInResponse response = controller.logIn(username, password);
-        if (response == LogInResponse.SUCCESS) {
+        if (response.getType() == LogInResponseType.SUCCESS) {
             System.out.println("Successfully logged in!");
             System.out.println();
 
-            display.switchScreen(MainMenuScreen.create(), controller);
-        } else if (response == LogInResponse.INVALID_CREDENTIALS) {
+            display.switchScreen(MainMenuScreen.createFor(response.getNetId(), response.getName()), controller);
+        } else if (response.getType() == LogInResponseType.INVALID_CREDENTIALS) {
             System.out.println("Invalid username or password.");
         }
     }

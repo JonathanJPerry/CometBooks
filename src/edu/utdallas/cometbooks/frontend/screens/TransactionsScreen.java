@@ -5,11 +5,14 @@ import edu.utdallas.cometbooks.backend.Controller;
 import java.util.Scanner;
 
 public class TransactionsScreen implements Screen {
-    public static TransactionsScreen create() {
-        return new TransactionsScreen();
+    public static TransactionsScreen createFor(String netId) {
+        return new TransactionsScreen(netId);
     }
 
-    private TransactionsScreen() {
+    private final String netId;
+
+    private TransactionsScreen(String netId) {
+        this.netId = netId;
     }
 
     @Override
