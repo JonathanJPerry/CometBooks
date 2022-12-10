@@ -89,4 +89,14 @@ public final class BookListingEntry {
     public double getPrice() {
         return price;
     }
+
+    public BookListingEntryBuilder toBuilder() {
+        return builder()
+                .sellerNetId(sellerNetId)
+                .book(bookRecord)
+                .condition(condition)
+                .description(description)
+                .status(status)
+                .price(price);
+    }
 }

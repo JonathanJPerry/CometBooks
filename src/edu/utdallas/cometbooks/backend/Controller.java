@@ -59,6 +59,10 @@ public class Controller {
         bookCatalogService.addListing(entry);
     }
 
+    public void buyBook(BookListingEntry entry) {
+        bookCatalogService.putOnHold(entry);
+    }
+
     public void selectBook(BookRecord b) {
 
     }

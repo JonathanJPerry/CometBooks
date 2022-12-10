@@ -20,34 +20,44 @@ public class BookCatalog {
         return database;
     }
 
-    private final List<BookListingEntry> books = new ArrayList<>();
+    private final List<BookListingEntry> listings = new ArrayList<>();
 
     private BookCatalog() {
     }
 
     public void addListing(BookListingEntry listing) {
-        books.add(listing);
+        listings.add(listing);
     }
 
     public List<BookListingEntry> fetchActiveListingsBy(String netId) {
-        return books.stream()
+        return listings.stream()
                 .filter(listing -> listing.getSellerNetId().equals(netId))
                 .filter(listing -> listing.getStatus() != ListingStatus.SOLD)
                 .collect(Collectors.toList());
     }
 
     public List<BookListingEntry> fetchActiveListingsFor(String isbn) {
-        return books.stream()
+        return listings.stream()
                 .filter(listing -> listing.getBookRecord().getIsbn().equals(isbn))
                 .filter(listing -> listing.getStatus() != ListingStatus.SOLD)
                 .collect(Collectors.toList());
     }
 
     public List<BookListingEntry> fetchSoldListingsFor(String isbn) {
-        return books.stream()
+        return listings.stream()
                 .filter(listing -> listing.getBookRecord().getIsbn().equals(isbn))
                 .filter(listing -> listing.getStatus() == ListingStatus.SOLD)
                 .collect(Collectors.toList());
+    }
+
+    public void updateStatus(BookListingEntry entry, ListingStatus status) {
+        listings.remove(entry);
+
+        BookListingEntry updatedEntry = entry.toBuilder()
+                .status(status)
+                .build();
+
+        listings.add(updatedEntry);
     }
 
     public void remove(BookListingEntry book)   {

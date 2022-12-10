@@ -52,8 +52,7 @@ public final class MainMenuScreen implements Screen {
         } else if (option.equals("2")) {
             display.switchScreen(TransactionsScreen.createFor(netId), controller);
         } else if (bookListingsForOption.containsKey(option)) {
-            System.out.println("This feature is not yet implemented. Please select another option.");
-            // todo: implement this
+            display.switchScreen(ViewListingScreen.createFor(netId, bookListingsForOption.get(option)), controller);
         } else {
             invalidInput();
         }

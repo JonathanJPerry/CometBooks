@@ -1,13 +1,12 @@
 package edu.utdallas.cometbooks.backend.listing;
 
-import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
+import edu.utdallas.cometbooks.data.listing.ListingStatus;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
-import java.util.stream.Stream;
 
 public final class BookCatalogService {
 
@@ -47,5 +46,9 @@ public final class BookCatalogService {
         return DoubleStream.concat(onlineRetailersStream, soldListingsStream)
                 .average()
                 .orElse(0.0);
+    }
+
+    public void putOnHold(BookListingEntry entry) {
+        catalog.updateStatus(entry, ListingStatus.ON_HOLD);
     }
 }
