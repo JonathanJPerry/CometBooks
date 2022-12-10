@@ -1,5 +1,6 @@
 package edu.utdallas.cometbooks.backend.student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UTDStudent {
@@ -7,7 +8,7 @@ public class UTDStudent {
         private String netId;
         private String password;
         private String name;
-        private List<String> courseBooks;
+        private List<String> courseBooks = new ArrayList<>();
 
         public UTDStudentBuilder netId(String netId) {
             this.netId = netId;

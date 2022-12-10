@@ -7,11 +7,13 @@ import edu.utdallas.cometbooks.backend.listing.BookCatalog;
 import edu.utdallas.cometbooks.backend.listing.BookListingEntry;
 import edu.utdallas.cometbooks.backend.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentDatabase;
+import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
+import edu.utdallas.cometbooks.data.LogInResponse;
 
 public class Controller {
-    public static Controller createWith(StudentDatabase database) {
-        return new Controller(database);
+    public static Controller createWith(StudentService service) {
+        return new Controller(service);
     }
 
     //TODO these aren't present in the diagram.
@@ -19,10 +21,14 @@ public class Controller {
     BookCatalog bookCatalog = new BookCatalog();
     BookDatabase bookDatabase = new BookDatabase();
     ChatLog chatLog = new ChatLog();
-    private final StudentDatabase database;
+    private final StudentService service;
 
-    private Controller(StudentDatabase database) {
-        this.database = database;
+    private Controller(StudentService service) {
+        this.service = service;
+    }
+
+    public LogInResponse logIn(String netId, String password) {
+        return service.logIn(netId, password);
     }
 
     public void selectMyBookForSaleTab() {

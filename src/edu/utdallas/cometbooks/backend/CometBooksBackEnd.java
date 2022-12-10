@@ -1,6 +1,7 @@
 package edu.utdallas.cometbooks.backend;
 
 import edu.utdallas.cometbooks.backend.student.StudentDatabase;
+import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
 
 public final class CometBooksBackEnd {
@@ -29,7 +30,7 @@ public final class CometBooksBackEnd {
     }
 
     public Controller createControllerInstance() {
-        Controller controller = Controller.createWith(DATABASE);
+        Controller controller = Controller.createWith(StudentService.createWith(DATABASE));
         return controller;
     }
 }
