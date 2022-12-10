@@ -9,12 +9,13 @@ import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
+import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
 import java.util.List;
 
 public class Controller {
-    public static Controller createWith(StudentService service, BookService bookService, BookCatalogService bookCatalogService) {
-        return new Controller(service, bookService, bookCatalogService);
+    public static Controller createWith(StudentService service, BookService bookService, BookCatalogService bookCatalogService, List<OnlineRetailerController> onlineRetailers) {
+        return new Controller(service, bookService, bookCatalogService, onlineRetailers);
     }
 
     //TODO these aren't present in the diagram.
@@ -23,11 +24,13 @@ public class Controller {
     private final StudentService studentService;
     private final BookService bookService;
     private final BookCatalogService bookCatalogService;
+    private final List<OnlineRetailerController> onlineRetailers;
 
-    private Controller(StudentService studentService, BookService bookService, BookCatalogService bookCatalogService) {
+    private Controller(StudentService studentService, BookService bookService, BookCatalogService bookCatalogService, List<OnlineRetailerController> onlineRetailers) {
         this.studentService = studentService;
         this.bookService = bookService;
         this.bookCatalogService = bookCatalogService;
+        this.onlineRetailers = onlineRetailers;
     }
 
     public LogInResponse logIn(String netId, String password) {
@@ -40,7 +43,11 @@ public class Controller {
     }
 
     public List<BookListingEntry> fetchBookListings(String netId) {
-        return bookCatalogService.fetchBookListings(netId);
+        return bookCatalogService.fetchActiveListingsBy(netId);
+    }
+
+    public double fetchSuggestedPrice(String isbn) {
+        return bookCatalogService.fetchSuggestedPrice(isbn, onlineRetailers);
     }
 
     public void listForSale(BookListingEntry entry) {

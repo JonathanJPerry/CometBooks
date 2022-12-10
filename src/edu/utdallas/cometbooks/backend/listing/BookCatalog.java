@@ -1,6 +1,7 @@
 package edu.utdallas.cometbooks.backend.listing;
 
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
+import edu.utdallas.cometbooks.data.listing.ListingStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,17 @@ public class BookCatalog {
         books.add(listing);
     }
 
-    public List<BookListingEntry> fetchListingsFor(String netId) {
+    public List<BookListingEntry> fetchActiveListingsBy(String netId) {
         return books.stream()
                 .filter(listing -> listing.getSellerNetId().equals(netId))
+                .filter(listing -> listing.getStatus() != ListingStatus.SOLD)
+                .collect(Collectors.toList());
+    }
+
+    public List<BookListingEntry> fetchSoldListingsFor(String isbn) {
+        return books.stream()
+                .filter(listing -> listing.getBookRecord().getIsbn().equals(isbn))
+                .filter(listing -> listing.getStatus() == ListingStatus.SOLD)
                 .collect(Collectors.toList());
     }
 

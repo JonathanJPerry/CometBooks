@@ -136,7 +136,10 @@ public final class AddBookForSaleScreen implements Screen {
     }
 
     private void inquireForPrice(Scanner scanner, Controller controller, ScreenDisplay display) {
-        System.out.print("Enter the price you want to sell the book for. If you aren't interested anymore, type \"go back\": ");
+        double suggestedPrice = controller.fetchSuggestedPrice(bookRecord.getIsbn());
+        System.out.print("Enter the price you want to sell the book for. We suggest you sell it for $"
+                + String.format("%.2f", suggestedPrice) + ". If you aren't interested anymore, type \"go back\": ");
+
         String priceString = scanner.nextLine();
 
         if (priceString.equalsIgnoreCase("go back")) {

@@ -1,6 +1,5 @@
 package edu.utdallas.cometbooks.data.listing;
 
-import edu.utdallas.cometbooks.backend.listing.ListingStatus;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 
 public final class BookListingEntry {
@@ -10,7 +9,7 @@ public final class BookListingEntry {
         private BookCondition condition;
         private double price;
         private String description;
-        private final ListingStatus status = ListingStatus.AVAILABLE;
+        private ListingStatus status = ListingStatus.AVAILABLE;
 
         public BookListingEntryBuilder sellerNetId(String sellerNetId) {
             this.sellerNetId = sellerNetId;
@@ -34,6 +33,11 @@ public final class BookListingEntry {
 
         public BookListingEntryBuilder description(String description) {
             this.description = description;
+            return this;
+        }
+
+        public BookListingEntryBuilder status(ListingStatus status) {
+            this.status = status;
             return this;
         }
 
