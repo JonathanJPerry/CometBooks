@@ -1,17 +1,30 @@
 package edu.utdallas.cometbooks.backend.listing;
 
+import edu.utdallas.cometbooks.data.listing.BookListingEntry;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookCatalog {
-    public List<BookListingEntry> bookList = new ArrayList<>();
-
-    public void addBook(BookListingEntry book)  {
-
+    public static BookCatalog createEmpty() {
+        return new BookCatalog();
     }
 
-    public BookListingEntry fetchBookListing(BookListingEntry book) {
-        return bookList.get(0);
+    public static BookCatalog createWith(BookListingEntry... listings) {
+        BookCatalog database = createEmpty();
+        for (BookListingEntry listing : listings) {
+            database.addListing(listing);
+        }
+        return database;
+    }
+
+    private final List<BookListingEntry> books = new ArrayList<>();
+
+    private BookCatalog() {
+    }
+
+    public void addListing(BookListingEntry listing) {
+        books.add(listing);
     }
 
     public void remove(BookListingEntry book)   {
@@ -22,7 +35,7 @@ public class BookCatalog {
 
     }
 
-    public void completeTransaction(BookListingEntry book)  {
+    /*public void completeTransaction(BookListingEntry book)  {
         if(book.getStatus() == ListingStatus.PENDING)   {
             //the second of the buyer/seller finished the transaction
             book.updateStatus(ListingStatus.SOLD);
@@ -30,7 +43,7 @@ public class BookCatalog {
             //the first of the buyer/seller finished the transaction
             book.updateStatus(ListingStatus.PENDING);
         }
-    }
+    }*/
 
     public void cancelHold(BookListingEntry book)    {
 

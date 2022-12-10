@@ -4,6 +4,7 @@ import com.sun.security.jgss.GSSUtil;
 import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
+import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 
 import java.util.*;
 
@@ -59,7 +60,18 @@ public final class AddBookForSaleScreen implements Screen {
         String choice = scanner.nextLine();
         switch (choice) {
             case "1" -> {
-                // todo add listing to database
+                BookListingEntry bookListingEntry = BookListingEntry.builder()
+                        .sellerNetId(netId)
+                        .book(bookRecord)
+                        .condition(bookCondition)
+                        .description(description)
+                        .price(price)
+                        .build();
+
+                controller.listForSale(bookListingEntry);
+                System.out.println("Successfully added book for sale!");
+                System.out.println();
+
                 display.goBack(controller);
             }
             case "2" -> bookRecord = null;
