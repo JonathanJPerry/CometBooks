@@ -1,6 +1,6 @@
 package edu.utdallas.cometbooks.backend.chat;
 
-import edu.utdallas.cometbooks.data.student.UTDStudent;
+import edu.utdallas.cometbooks.backend.student.UTDStudent;
 
 public class ChatLog {
     public UTDStudent sender;

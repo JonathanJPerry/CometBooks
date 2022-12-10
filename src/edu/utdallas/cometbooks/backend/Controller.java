@@ -6,11 +6,12 @@ import edu.utdallas.cometbooks.backend.chat.ChatLog;
 import edu.utdallas.cometbooks.backend.listing.BookCatalog;
 import edu.utdallas.cometbooks.backend.listing.BookListingEntry;
 import edu.utdallas.cometbooks.backend.listing.BookCondition;
-import edu.utdallas.cometbooks.data.student.UTDStudent;
+import edu.utdallas.cometbooks.backend.student.StudentDatabase;
+import edu.utdallas.cometbooks.backend.student.UTDStudent;
 
 public class Controller {
-    public static Controller create() {
-        return new Controller();
+    public static Controller createWith(StudentDatabase database) {
+        return new Controller(database);
     }
 
     //TODO these aren't present in the diagram.
@@ -18,8 +19,10 @@ public class Controller {
     BookCatalog bookCatalog = new BookCatalog();
     BookDatabase bookDatabase = new BookDatabase();
     ChatLog chatLog = new ChatLog();
+    private final StudentDatabase database;
 
-    private Controller() {
+    private Controller(StudentDatabase database) {
+        this.database = database;
     }
 
     public void selectMyBookForSaleTab() {

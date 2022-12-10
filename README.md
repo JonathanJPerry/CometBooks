@@ -1,7 +1,14 @@
 # CometBooks
 
 This codebase hosts the back-end and mock-front-end for the CometBooks project. Only UC1 was to be implemented in this 
-project. The Use Case is defined as follows:
+project. 
+
+Two dummy users exist:
+> username: ajs180009, password: password
+> 
+> username: jjp180000, password: password
+
+The Use Case is defined as follows:
 
 > **Brief description**: The seller lists a book to sell, messages with the buyer, and finishes when the book has been sold.
 > 
