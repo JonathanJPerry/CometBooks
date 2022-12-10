@@ -1,21 +1,32 @@
 package edu.utdallas.cometbooks.backend.book;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import edu.utdallas.cometbooks.data.book.BookRecord;
+
+import java.util.*;
 
 public class BookDatabase {
-    HashMap<String, BookRecord> bookRecords = new HashMap<>();
-
-    public List<BookRecord> fetchRelevantBooks(List<String> courseBookTitles)    {
-        List<BookRecord> bookRecordList = new ArrayList<>();
-        for(String book : courseBookTitles)   {
-            bookRecordList.add(bookRecords.get(book));
-        }
-        return bookRecordList;
+    public static BookDatabase createEmpty() {
+        return new BookDatabase();
     }
 
-    public BookRecord fetchBookRecord(String bookTitle) {
-        return bookRecords.get(bookTitle);
+    public static BookDatabase createWith(BookRecord... books) {
+        BookDatabase database = createEmpty();
+        for (BookRecord book : books) {
+            database.addBook(book);
+        }
+        return database;
+    }
+
+    private final Map<String, BookRecord> books = new HashMap<>();
+
+    private BookDatabase() {
+    }
+
+    public void addBook(BookRecord book) {
+        books.put(book.getIsbn(), book);
+    }
+
+    public Optional<BookRecord> getBook(String isbn) {
+        return Optional.ofNullable(books.get(isbn));
     }
 }

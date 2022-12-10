@@ -1,7 +1,7 @@
 package edu.utdallas.cometbooks.backend.student;
 
-import edu.utdallas.cometbooks.data.LogInResponse;
-import edu.utdallas.cometbooks.data.LogInResponseType;
+import edu.utdallas.cometbooks.data.login.LogInResponse;
+import edu.utdallas.cometbooks.data.login.LogInResponseType;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package edu.utdallas.cometbooks.data;
+package edu.utdallas.cometbooks.data.login;
 
 public final class LogInResponse {
     public static LogInResponse create(String netId, String name, LogInResponseType type) {

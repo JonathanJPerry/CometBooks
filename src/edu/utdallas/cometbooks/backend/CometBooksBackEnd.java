@@ -1,5 +1,7 @@
 package edu.utdallas.cometbooks.backend;
 
+import edu.utdallas.cometbooks.backend.book.BookDatabase;
+import edu.utdallas.cometbooks.backend.book.BookService;
 import edu.utdallas.cometbooks.backend.student.StudentDatabase;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
@@ -9,7 +11,7 @@ public final class CometBooksBackEnd {
         return new CometBooksBackEnd();
     }
 
-    private static final StudentDatabase DATABASE = StudentDatabase.createWith(
+    private static final StudentDatabase STUDENTS_DATABASE = StudentDatabase.createWith(
             UTDStudent.builder()
                     .netId("ajs180009")
                     .password("password")
@@ -26,11 +28,15 @@ public final class CometBooksBackEnd {
                     .build()
     );
 
+    private static final BookDatabase BOOK_DATABASE = BookDatabase.createEmpty();
+
     private CometBooksBackEnd() {
     }
 
     public Controller createControllerInstance() {
-        Controller controller = Controller.createWith(StudentService.createWith(DATABASE));
-        return controller;
+        StudentService studentService = StudentService.createWith(STUDENTS_DATABASE);
+        BookService bookService = BookService.createWith(BOOK_DATABASE);
+
+        return Controller.createWith(studentService, bookService);
     }
 }

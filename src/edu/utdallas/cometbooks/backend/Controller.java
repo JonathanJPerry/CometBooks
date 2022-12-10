@@ -1,40 +1,41 @@
 package edu.utdallas.cometbooks.backend;
 
-import edu.utdallas.cometbooks.backend.book.BookDatabase;
-import edu.utdallas.cometbooks.backend.book.BookRecord;
+import edu.utdallas.cometbooks.backend.book.BookService;
+import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.backend.chat.ChatLog;
 import edu.utdallas.cometbooks.backend.listing.BookCatalog;
 import edu.utdallas.cometbooks.backend.listing.BookListingEntry;
-import edu.utdallas.cometbooks.backend.listing.BookCondition;
+import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
-import edu.utdallas.cometbooks.data.LogInResponse;
-import edu.utdallas.cometbooks.data.LogInResponseType;
+import edu.utdallas.cometbooks.data.login.LogInResponse;
 
 import java.util.List;
 
 public class Controller {
-    public static Controller createWith(StudentService service) {
-        return new Controller(service);
+    public static Controller createWith(StudentService service, BookService bookService) {
+        return new Controller(service, bookService);
     }
 
     //TODO these aren't present in the diagram.
     // Should they be converted to singletons?
     BookCatalog bookCatalog = new BookCatalog();
-    BookDatabase bookDatabase = new BookDatabase();
     ChatLog chatLog = new ChatLog();
-    private final StudentService service;
+    private final StudentService studentService;
+    private final BookService bookService;
 
-    private Controller(StudentService service) {
-        this.service = service;
+    private Controller(StudentService studentService, BookService bookService) {
+        this.studentService = studentService;
+        this.bookService = bookService;
     }
 
     public LogInResponse logIn(String netId, String password) {
-        return service.logIn(netId, password);
+        return studentService.logIn(netId, password);
     }
 
-    public List<String> fetchBooks(String netId) {
-        return service.getBooks(netId);
+    public List<BookRecord> fetchBooks(String netId) {
+        List<String> isbns = studentService.getBooks(netId);
+        return bookService.fetchBookRecords(isbns);
     }
 
     public void selectBook(BookRecord b) {

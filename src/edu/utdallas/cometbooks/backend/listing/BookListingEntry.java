@@ -1,5 +1,7 @@
 package edu.utdallas.cometbooks.backend.listing;
 
+import edu.utdallas.cometbooks.data.listing.BookCondition;
+
 public class BookListingEntry {
     private String sellerContactInfo;
     private BookCondition condition;

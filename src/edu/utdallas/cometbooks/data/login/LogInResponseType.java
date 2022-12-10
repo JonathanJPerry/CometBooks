@@ -1,4 +1,4 @@
-package edu.utdallas.cometbooks.data;
+package edu.utdallas.cometbooks.data.login;
 
 public enum LogInResponseType {
     SUCCESS,
