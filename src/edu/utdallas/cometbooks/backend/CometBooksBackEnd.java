@@ -7,6 +7,7 @@ import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
 import edu.utdallas.cometbooks.backend.student.StudentDatabase;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
+import edu.utdallas.cometbooks.data.book.BookRecord;
 
 public final class CometBooksBackEnd {
     public static CometBooksBackEnd initialize() {
@@ -30,7 +31,22 @@ public final class CometBooksBackEnd {
                     .build()
     );
 
-    private static final BookDatabase BOOK_DATABASE = BookDatabase.createEmpty();
+    private static final BookDatabase BOOK_DATABASE = BookDatabase.createWith(
+            BookRecord.builder()
+                    .author("Pascal Roques")
+                    .isbn("978-0-321-87758-1")
+                    .title("UML in Practice The Art of Modeling Software Systems Demonstrated through Worked Examples and Solutions")
+                    .year(2006)
+                    .suggestedRetailPrice(100.0)
+                    .build(),
+            BookRecord.builder()
+                    .author("John L. Hennessy & David A. Patterson")
+                    .isbn("978-0-321-87759-8")
+                    .title("Computer Architecture: A Quantitative Approach, 6th Edition")
+                    .year(2019)
+                    .suggestedRetailPrice(200.0)
+                    .build()
+    );
 
     private static final BookCatalog BOOK_CATALOG = BookCatalog.createEmpty();
 
