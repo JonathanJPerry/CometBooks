@@ -37,12 +37,12 @@ public class ChatScreen implements Screen {
         System.out.println("What would you like say? To go back, type \"back to messages\". To print all messages in this chat again, type \"print all\".");
         String text = scanner.nextLine();
 
-        if (text.equals("back to messages")) {
+        if (text.equalsIgnoreCase("back to messages")) {
             display.goBack(controller);
             return;
         }
 
-        if (text.equals("print all")) {
+        if (text.equalsIgnoreCase("print all")) {
             List<Message> messages = controller.fetchMessagesBetween(netId, recipient);
             for (Message message : messages) {
                 System.out.println(formatMessage(message));
