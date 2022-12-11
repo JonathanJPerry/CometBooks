@@ -4,6 +4,7 @@ import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
+import edu.utdallas.cometbooks.data.transactions.TransactionCompletionResponse;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
 import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 import edu.utdallas.cometbooks.frontend.screens.messages.ChatScreen;
@@ -44,7 +45,20 @@ public final class TransactionScreen implements Screen {
 
         String option = scanner.nextLine();
         switch (option) {
-            case "1" -> System.out.println("This feature has not been implemented yet.");
+            case "1" -> {
+                TransactionCompletionResponse response = controller.completeTransaction(netId, transaction);
+
+                if (response == TransactionCompletionResponse.BUYER_NOT_COMPLETED) {
+                    System.out.println("The buyer has to mark the transaction complete first before you can.");
+                    return;
+                }
+
+                if (transaction.getSellerNetId().equals(netId)) {
+                    System.out.println("The transaction has been completed successfully.");
+                } else {
+                    System.out.println("The transaction has been completed successfully on your end. The seller now has to mark it complete.");
+                }
+            }
             case "2" -> display.goBack(controller);
             default -> invalidInput();
         }
