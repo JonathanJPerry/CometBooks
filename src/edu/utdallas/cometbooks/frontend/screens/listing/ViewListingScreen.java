@@ -33,7 +33,7 @@ public final class ViewListingScreen implements Screen {
 
         switch (scanner.nextLine()) {
             case "1" -> {
-                controller.buyBook(listing);
+                controller.buyBook(listing, netId);
                 System.out.println("We've let the seller know that you're interested in buying the book!");
             }
             case "2" -> display.goBack(controller);
