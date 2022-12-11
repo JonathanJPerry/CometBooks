@@ -58,7 +58,7 @@ public class TransactionsOverviewScreen implements Screen {
         } else {
             String option = scanner.nextLine();
             if (transactionsForOption.containsKey(option)) {
-                // todo implement
+                display.switchScreen(TransactionScreen.createFor(netId, transactionsForOption.get(option)), controller);
             } else if (option.equals((transactionsForOption.size() + 1) + "")) {
                 display.goBack(controller);
             } else {

@@ -17,6 +17,10 @@ public final class Transaction {
         this.listing = listing;
     }
 
+    public String getOther(String netId) {
+        return netId.equals(buyerNetId) ? sellerNetId : buyerNetId;
+    }
+
     public String getSellerNetId() {
         return sellerNetId;
     }
