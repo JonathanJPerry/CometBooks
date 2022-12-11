@@ -1,12 +1,12 @@
 package edu.utdallas.cometbooks.backend;
 
 import edu.utdallas.cometbooks.backend.book.BookService;
+import edu.utdallas.cometbooks.data.chat.Notification;
 import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
 import edu.utdallas.cometbooks.backend.transactions.TransactionService;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
-import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
@@ -100,5 +100,17 @@ public class Controller {
 
     public void sendMessage(String fromNetId, String toNetId, String text) {
         studentService.sendMessage(fromNetId, toNetId, text);
+    }
+
+    public void sendNotification(String netId, Notification notification) {
+        studentService.sendNotification(netId, notification);
+    }
+
+    public void clearNotifications(String netId) {
+        studentService.clearNotifications(netId);
+    }
+
+    public List<Notification> fetchNotifications(String netId) {
+        return studentService.getNotifications(netId);
     }
 }

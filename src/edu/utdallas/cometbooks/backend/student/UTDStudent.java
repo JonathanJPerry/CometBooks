@@ -1,6 +1,7 @@
 package edu.utdallas.cometbooks.backend.student;
 
 import edu.utdallas.cometbooks.backend.chat.ChatLog;
+import edu.utdallas.cometbooks.data.chat.Notification;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +49,7 @@ public class UTDStudent {
     private final String name;
     private final List<String> courseBooks; // a string of ISBNs of books
     private final Map<String, ChatLog> chatLogs = new HashMap<>();
+    private final List<Notification> notifications = new ArrayList<>();
 
     public UTDStudent(String netId, String password, String name, List<String> courseBooks) {
         this.netId = netId;
@@ -78,5 +80,17 @@ public class UTDStudent {
 
     public Map<String, ChatLog> getChatLogs() {
         return chatLogs;
+    }
+
+    public void addNotification(Notification notification) {
+        notifications.add(notification);
+    }
+
+    public void clearNotifications() {
+        notifications.clear();
+    }
+
+    public List<Notification> getNotifications() {
+        return new ArrayList<>(notifications);
     }
 }

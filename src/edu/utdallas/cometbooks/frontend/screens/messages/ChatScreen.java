@@ -2,6 +2,7 @@ package edu.utdallas.cometbooks.frontend.screens.messages;
 
 import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.chat.Message;
+import edu.utdallas.cometbooks.data.chat.Notification;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
 import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 
@@ -25,11 +26,9 @@ public class ChatScreen implements Screen {
     public void onOpen(Controller controller) {
         List<Message> messages = controller.fetchMessagesBetween(netId, recipient);
         System.out.println("You are now chatting with \"" + recipient + "\".");
-        System.out.println();
         for (Message message : messages) {
             System.out.println(formatMessage(message));
         }
-        System.out.println();
     }
 
     @Override
@@ -65,10 +64,13 @@ public class ChatScreen implements Screen {
 
         controller.sendMessage(netId, recipient, text);
 
+        Notification notification = Notification.builder()
+                .text(netId + " sent you a message.")
+                .build();
+        controller.sendNotification(recipient, notification);
+
         Message message = controller.fetchLatestMessageBetween(netId, recipient);
-        System.out.println();
         System.out.println(formatMessage(message));
-        System.out.println();
     }
 
     private String formatMessage(Message message) {

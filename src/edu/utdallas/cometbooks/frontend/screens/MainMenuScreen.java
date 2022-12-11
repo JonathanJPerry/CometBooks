@@ -1,6 +1,7 @@
 package edu.utdallas.cometbooks.frontend.screens;
 
 import edu.utdallas.cometbooks.backend.Controller;
+import edu.utdallas.cometbooks.data.chat.Notification;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.frontend.screens.listing.MyBooksForSaleScreen;
 import edu.utdallas.cometbooks.frontend.screens.listing.ViewListingScreen;
@@ -29,6 +30,13 @@ public final class MainMenuScreen implements Screen {
         bookListingsForOption.clear();
 
         System.out.println("Welcome to CometBooks, " + name + "!");
+
+        List<Notification> notifications = controller.fetchNotifications(netId);
+        if (notifications.size() > 0) {
+            System.out.println("You have " + notifications.size() + " new notifications:");
+            notifications.forEach(notification -> System.out.println("- " + notification.getText()));
+        }
+        controller.clearNotifications(netId);
 
         List<BookListingEntry> bookListings = controller.fetchRelevantListings(netId);
         for (int i = 0; i < bookListings.size(); i++) {

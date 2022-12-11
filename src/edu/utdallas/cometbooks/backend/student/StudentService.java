@@ -2,6 +2,7 @@ package edu.utdallas.cometbooks.backend.student;
 
 import edu.utdallas.cometbooks.backend.chat.ChatLog;
 import edu.utdallas.cometbooks.data.chat.Message;
+import edu.utdallas.cometbooks.data.chat.Notification;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.login.LogInResponseType;
 
@@ -146,6 +147,20 @@ public final class StudentService {
     public List<String> getBooks(String netId) {
         return studentDatabase.getStudent(netId)
                 .map(UTDStudent::getCourseBooks)
+                .orElse(null);
+    }
+
+    public void sendNotification(String netId, Notification notification) {
+        studentDatabase.getStudent(netId).ifPresent(student -> student.addNotification(notification));
+    }
+
+    public void clearNotifications(String netId) {
+        studentDatabase.getStudent(netId).ifPresent(UTDStudent::clearNotifications);
+    }
+
+    public List<Notification> getNotifications(String netId) {
+        return studentDatabase.getStudent(netId)
+                .map(UTDStudent::getNotifications)
                 .orElse(null);
     }
 }
