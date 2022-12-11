@@ -58,8 +58,8 @@ public final class MyBooksForSaleScreen implements Screen {
         if (choice.equals("1")) {
             display.switchScreen(AddBookForSaleScreen.createFor(netId), controller);
         } else if (listingForOption.containsKey(choice)) {
-            System.out.println("This feature is not yet implemented. Please select another option.");
-            // todo: implement this
+            BookListingEntry listing = listingForOption.get(choice);
+            display.switchScreen(EditBookForSaleScreen.createFor(netId, listing), controller);
         } else if (choice.equals(goBackOption)) {
             display.goBack(controller);
         } else {
