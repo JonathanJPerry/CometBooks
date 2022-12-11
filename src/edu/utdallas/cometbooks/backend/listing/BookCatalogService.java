@@ -28,6 +28,10 @@ public final class BookCatalogService {
         catalog.replaceListing(original, updated);
     }
 
+    public void removeListing(BookListingEntry listing) {
+        catalog.remove(listing);
+    }
+
     public List<BookListingEntry> fetchActiveListingsBy(String netId) {
         return catalog.fetchActiveListingsBy(netId);
     }

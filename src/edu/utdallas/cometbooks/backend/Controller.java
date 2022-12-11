@@ -63,6 +63,10 @@ public class Controller {
         bookCatalogService.editListing(original, updated);
     }
 
+    public void trashListing(BookListingEntry entry) {
+        bookCatalogService.removeListing(entry);
+    }
+
     public void buyBook(BookListingEntry entry) {
         bookCatalogService.putOnHold(entry);
     }

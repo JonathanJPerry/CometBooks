@@ -87,7 +87,7 @@ public final class EditBookForSaleScreen implements Screen {
         } else if (firstTime && choice.equals("3") || !firstTime && choice.equals("4")) {
             description = null;
         } else if (firstTime && choice.equals("4") || !firstTime && choice.equals("5")) {
-            // todo implement trashing
+            controller.trashListing(originalListing);
         } else if (firstTime && choice.equals("5") || !firstTime && choice.equals("6")) {
             display.goBack(controller);
         }

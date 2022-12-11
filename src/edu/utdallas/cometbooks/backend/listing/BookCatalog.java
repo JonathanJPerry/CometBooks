@@ -65,8 +65,8 @@ public class BookCatalog {
         listings.add(updatedEntry);
     }
 
-    public void remove(BookListingEntry book)   {
-
+    public void remove(BookListingEntry listing)   {
+        listings.remove(listing);
     }
 
     public void PutOnHold(BookListingEntry book)    {
