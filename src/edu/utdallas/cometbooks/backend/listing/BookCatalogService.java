@@ -43,6 +43,12 @@ public final class BookCatalogService {
                 .collect(Collectors.toList());
     }
 
+    public List<BookListingEntry> fetchActiveTransactionsBy(String netId) {
+        return catalog.fetchActiveListingsBy(netId).stream()
+                .filter(listing -> listing.getStatus() == ListingStatus.ON_HOLD)
+                .collect(Collectors.toList());
+    }
+
     public double fetchSuggestedPrice(String isbn, List<OnlineRetailerController> onlineRetailers) {
         List<BookListingEntry> soldListings = catalog.fetchSoldListingsFor(isbn);
 

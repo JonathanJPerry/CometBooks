@@ -80,6 +80,10 @@ public class Controller {
         return studentService.fetchLatestMessageBetween(netId1, netId2);
     }
 
+    public List<BookListingEntry> fetchActiveTransactions(String netId) {
+        return bookCatalogService.fetchActiveTransactionsBy(netId);
+    }
+
     public void selectBook(BookRecord b) {
 
     }
