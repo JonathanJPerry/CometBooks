@@ -35,6 +35,7 @@ public final class MainMenuScreen implements Screen {
         if (notifications.size() > 0) {
             System.out.println("You have " + notifications.size() + " new notifications:");
             notifications.forEach(notification -> System.out.println("- " + notification.getText()));
+            System.out.println();
         }
         controller.clearNotifications(netId);
 
