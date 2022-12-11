@@ -4,7 +4,7 @@ This codebase hosts the back-end and mock-front-end for the CometBooks project. 
 project. 
 
 ## Setup
-To run the project, use the `edu.utdallas.cometbooks.frontend.CometBooksFrontEnd` class to run the project. This will
+To run the project, use the `edu.utdallas.cometbooks.frontend.CometBooksFrontEnd` class. This will
 create an instance of the backend that will be used by the front-end, communicating only through the 
 `edu.utdallas.cometbooks.backend.Controller` class.
 
