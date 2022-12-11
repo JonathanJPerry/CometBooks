@@ -1,7 +1,6 @@
 package edu.utdallas.cometbooks.frontend.screens.transactions;
 
 import edu.utdallas.cometbooks.backend.Controller;
-import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
 import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
@@ -27,7 +26,7 @@ public class TransactionsOverviewScreen implements Screen {
     public void onOpen(Controller controller) {
         System.out.print("The transactions tab has been open. ");
 
-        List<Transaction> transactions = controller.fetchActiveTransactions(netId);
+        List<Transaction> transactions = controller.fetchActiveTransactionsInvolving(netId);
         for (int i = 0; i < transactions.size(); i++) {
             transactionsForOption.put((i + 1) + "", transactions.get(i));
         }

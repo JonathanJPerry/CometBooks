@@ -7,6 +7,8 @@ import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
 import edu.utdallas.cometbooks.backend.student.StudentDatabase;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
+import edu.utdallas.cometbooks.backend.transactions.TransactionDatabase;
+import edu.utdallas.cometbooks.backend.transactions.TransactionService;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
@@ -53,6 +55,8 @@ public final class CometBooksBackEnd {
 
     private static final BookCatalog BOOK_CATALOG = BookCatalog.createEmpty();
 
+    private static final TransactionDatabase TRANSACTION_DATABASE = TransactionDatabase.createEmpty();
+
     private CometBooksBackEnd() {
     }
 
@@ -60,10 +64,11 @@ public final class CometBooksBackEnd {
         StudentService studentService = StudentService.createWith(STUDENTS_DATABASE);
         BookService bookService = BookService.createWith(BOOK_DATABASE);
         BookCatalogService bookCatalogService = BookCatalogService.createWith(BOOK_CATALOG);
+        TransactionService transactionService = TransactionService.createWith(TRANSACTION_DATABASE);
 
         OnlineRetailerController onlineRetailer1 = OnlineRetailerController.withMockPrice(150.0);
         OnlineRetailerController onlineRetailer2 = OnlineRetailerController.withMockPrice(100.0);
 
-        return Controller.createWith(studentService, bookService, bookCatalogService, List.of(onlineRetailer1, onlineRetailer2));
+        return Controller.createWith(studentService, bookService, bookCatalogService, transactionService, List.of(onlineRetailer1, onlineRetailer2));
     }
 }

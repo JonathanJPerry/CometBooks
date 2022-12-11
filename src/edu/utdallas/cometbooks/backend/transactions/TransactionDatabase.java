@@ -3,6 +3,7 @@ package edu.utdallas.cometbooks.backend.transactions;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public final class TransactionDatabase {
     public static TransactionDatabase createEmpty() {
@@ -24,6 +25,12 @@ public final class TransactionDatabase {
 
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
+    }
+
+    public List<Transaction> getTransactionsInvolving(String netId) {
+        return transactions.stream()
+                .filter(transaction -> transaction.getBuyerNetId().equals(netId) || transaction.getSellerNetId().equals(netId))
+                .collect(Collectors.toList());
     }
 
     public Optional<Transaction> getTransactionBetween(String sellerNetId, String buyerNetId, String isbn) {

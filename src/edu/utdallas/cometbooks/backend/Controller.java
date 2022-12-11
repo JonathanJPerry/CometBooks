@@ -2,6 +2,7 @@ package edu.utdallas.cometbooks.backend;
 
 import edu.utdallas.cometbooks.backend.book.BookService;
 import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
+import edu.utdallas.cometbooks.backend.transactions.TransactionService;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
@@ -11,23 +12,24 @@ import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    public static Controller createWith(StudentService service, BookService bookService, BookCatalogService bookCatalogService, List<OnlineRetailerController> onlineRetailers) {
-        return new Controller(service, bookService, bookCatalogService, onlineRetailers);
+    public static Controller createWith(StudentService service, BookService bookService, BookCatalogService bookCatalogService, TransactionService transactionService, List<OnlineRetailerController> onlineRetailers) {
+        return new Controller(service, bookService, bookCatalogService, transactionService, onlineRetailers);
     }
 
     private final StudentService studentService;
     private final BookService bookService;
     private final BookCatalogService bookCatalogService;
+    private final TransactionService transactionService;
     private final List<OnlineRetailerController> onlineRetailers;
 
-    private Controller(StudentService studentService, BookService bookService, BookCatalogService bookCatalogService, List<OnlineRetailerController> onlineRetailers) {
+    private Controller(StudentService studentService, BookService bookService, BookCatalogService bookCatalogService, TransactionService transactionService, List<OnlineRetailerController> onlineRetailers) {
         this.studentService = studentService;
         this.bookService = bookService;
         this.bookCatalogService = bookCatalogService;
+        this.transactionService = transactionService;
         this.onlineRetailers = onlineRetailers;
     }
 
@@ -82,9 +84,8 @@ public class Controller {
         return studentService.fetchLatestMessageBetween(netId1, netId2);
     }
 
-    public List<Transaction> fetchActiveTransactions(String netId) {
-        // todo implement
-        return new ArrayList<>();
+    public List<Transaction> fetchActiveTransactionsInvolving(String netId) {
+        return transactionService.fetchActiveTransactionsInvolving(netId);
     }
 
     public void selectBook(BookRecord b) {
