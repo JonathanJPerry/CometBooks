@@ -44,7 +44,7 @@ public class BookCatalog {
     public List<BookListingEntry> fetchActiveListingsFor(String isbn) {
         return listings.stream()
                 .filter(listing -> listing.getBookRecord().getIsbn().equals(isbn))
-                .filter(listing -> listing.getStatus() != ListingStatus.SOLD)
+                .filter(listing -> listing.getStatus() == ListingStatus.AVAILABLE)
                 .collect(Collectors.toList());
     }
 
