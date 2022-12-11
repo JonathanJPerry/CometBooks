@@ -33,7 +33,7 @@ public final class TransactionService {
             return TransactionCompletionResponse.SUCCESS;
         }
 
-        if (transaction.isBuyerCompleted()) {
+        if (!transaction.isBuyerCompleted()) {
             return TransactionCompletionResponse.BUYER_NOT_COMPLETED;
         }
 
