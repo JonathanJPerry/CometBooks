@@ -49,6 +49,10 @@ public final class TransactionDatabase {
         transactions.add(newTransaction);
     }
 
+    public void remove(Transaction transaction) {
+        transactions.remove(transaction);
+    }
+
     public void removeAllRelated(Transaction transaction) {
         transactions.removeIf(t -> t.getSellerNetId().equals(transaction.getSellerNetId())
                 && t.getListing().getBookRecord().getIsbn().equals(transaction.getListing().getBookRecord().getIsbn()));

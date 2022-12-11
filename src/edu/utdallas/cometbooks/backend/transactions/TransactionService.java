@@ -37,7 +37,15 @@ public final class TransactionService {
             return TransactionCompletionResponse.BUYER_NOT_COMPLETED;
         }
 
+        transactionDatabase.remove(transaction);
         transactionDatabase.removeAllRelated(transaction);
         return TransactionCompletionResponse.SUCCESS;
+    }
+
+    public void cancelTransaction(Transaction transaction) {
+        Transaction transactionInDatabase = transactionDatabase.getTransactionBetween(transaction.getSellerNetId(), transaction.getBuyerNetId(), transaction.getListing().getBookRecord().getIsbn())
+                .orElseThrow(() -> new IllegalArgumentException("Transaction does not exist in database"));
+
+        transactionDatabase.remove(transactionInDatabase);
     }
 }

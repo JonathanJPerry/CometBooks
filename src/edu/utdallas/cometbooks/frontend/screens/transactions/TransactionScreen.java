@@ -1,15 +1,12 @@
 package edu.utdallas.cometbooks.frontend.screens.transactions;
 
 import edu.utdallas.cometbooks.backend.Controller;
-import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
 import edu.utdallas.cometbooks.data.transactions.TransactionCompletionResponse;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
 import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
-import edu.utdallas.cometbooks.frontend.screens.messages.ChatScreen;
 
-import java.util.List;
 import java.util.Scanner;
 
 public final class TransactionScreen implements Screen {
@@ -41,7 +38,8 @@ public final class TransactionScreen implements Screen {
     public void handleInput(Scanner scanner, Controller controller, ScreenDisplay display) {
         System.out.println("What would you like to do?");
         System.out.println("1. Complete transaction");
-        System.out.println("2. Go back");
+        System.out.println("2. Cancel transaction");
+        System.out.println("3. Go back");
 
         String option = scanner.nextLine();
         switch (option) {
@@ -58,8 +56,16 @@ public final class TransactionScreen implements Screen {
                 } else {
                     System.out.println("The transaction has been completed successfully on your end. The seller now has to mark it complete.");
                 }
+
+                display.goBack(controller);
             }
-            case "2" -> display.goBack(controller);
+            case "2" -> {
+                controller.cancelTransaction(transaction);
+                System.out.println("The transaction has been cancelled.");
+
+                display.goBack(controller);
+            }
+            case "3" -> display.goBack(controller);
             default -> invalidInput();
         }
     }

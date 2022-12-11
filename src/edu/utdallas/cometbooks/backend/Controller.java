@@ -93,6 +93,11 @@ public class Controller {
         return transactionService.completeTransaction(netId, transaction);
     }
 
+    public void cancelTransaction(Transaction transaction) {
+        transactionService.cancelTransaction(transaction);
+        bookCatalogService.markAvailable(transaction.getListing());
+    }
+
     public void selectBook(BookRecord b) {
 
     }

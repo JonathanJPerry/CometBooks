@@ -65,4 +65,8 @@ public final class BookCatalogService {
     public void putOnHold(BookListingEntry entry) {
         catalog.updateStatus(entry, ListingStatus.ON_HOLD);
     }
+
+    public void markAvailable(BookListingEntry entry) {
+        catalog.updateStatus(entry, ListingStatus.AVAILABLE);
+    }
 }
