@@ -4,6 +4,7 @@ import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.frontend.screens.listing.MyBooksForSaleScreen;
 import edu.utdallas.cometbooks.frontend.screens.listing.ViewListingScreen;
+import edu.utdallas.cometbooks.frontend.screens.messages.MessagesOverviewScreen;
 import edu.utdallas.cometbooks.frontend.screens.transactions.TransactionsScreen;
 
 import java.util.*;
@@ -57,7 +58,7 @@ public final class MainMenuScreen implements Screen {
         } else if (option.equals("2")) {
             display.switchScreen(TransactionsScreen.createFor(netId), controller);
         } else if (option.equals("3")) {
-            System.out.println("This feature is not yet implemented.");
+            display.switchScreen(MessagesOverviewScreen.createFor(netId), controller);
         } else if (option.equals("4")) {
             System.out.println("You have been logged out.");
             System.out.println();

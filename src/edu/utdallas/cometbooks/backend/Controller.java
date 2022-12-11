@@ -69,6 +69,10 @@ public class Controller {
         studentService.enableChattingBetween(entry.getSellerNetId(), interestedBuyerNetId);
     }
 
+    public List<String> fetchActiveChatLogs(String netId) {
+        return studentService.fetchActiveChatLogs(netId);
+    }
+
     public void selectBook(BookRecord b) {
 
     }

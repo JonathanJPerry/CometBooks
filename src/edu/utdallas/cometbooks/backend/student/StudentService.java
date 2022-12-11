@@ -4,8 +4,10 @@ import edu.utdallas.cometbooks.backend.chat.ChatLog;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.login.LogInResponseType;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public final class StudentService {
     public static StudentService createWith(StudentDatabase database) {
@@ -44,6 +46,16 @@ public final class StudentService {
 
         seller.enableChattingWith(buyerNetId, chatLog);
         buyer.enableChattingWith(sellerNetId, chatLog);
+    }
+
+    public List<String> fetchActiveChatLogs(String netId) {
+        Optional<UTDStudent> studentOptional = studentDatabase.getStudent(netId);
+
+        if (studentOptional.isEmpty()) {
+            throw new IllegalArgumentException("Student does not exist");
+        }
+
+        return new ArrayList<>(studentOptional.get().getChatLogs().keySet());
     }
 
     public List<String> getBooks(String netId) {

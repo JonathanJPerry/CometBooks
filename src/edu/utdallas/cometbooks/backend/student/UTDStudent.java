@@ -75,4 +75,8 @@ public class UTDStudent {
     public List<String> getCourseBooks() {
         return courseBooks;
     }
+
+    public Map<String, ChatLog> getChatLogs() {
+        return chatLogs;
+    }
 }
