@@ -6,6 +6,9 @@ import edu.utdallas.cometbooks.data.chat.Notification;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
 import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,14 +76,28 @@ public class ChatScreen implements Screen {
         System.out.println(formatMessage(message));
     }
 
-    private String formatMessage(Message message) {
-        // todo add date to this
-        return "\t" + message.getFromNetId() + ": " + message.getText();
-    }
-
     private void sendConfirmationMessage(String text) {
         System.out.println("Are you sure you want to say \"" + text + "\" to " + recipient + "?");
         System.out.println("1. Yes");
         System.out.println("2. No");
+    }
+
+    private String formatMessage(Message message) {
+        String date = formatDate(message.getDate());
+        return "\t" + message.getFromNetId() + " (" + date + "): " + message.getText();
+    }
+
+    private String formatDate(LocalDateTime date) {
+        LocalDate today = LocalDate.now();
+        LocalDate yesterday = today.minusDays(1);
+
+        if (date.toLocalDate().isEqual(yesterday)) {
+            String time = DateTimeFormatter.ofPattern("h:mm a").format(date);
+            return "Yesterday, " + time;
+        } else if (date.toLocalDate().isEqual(today)) {
+            return DateTimeFormatter.ofPattern("h:mm a").format(date);
+        }
+
+        return DateTimeFormatter.ofPattern("MM/dd/yyyy, h:mm a").format(date);
     }
 }
