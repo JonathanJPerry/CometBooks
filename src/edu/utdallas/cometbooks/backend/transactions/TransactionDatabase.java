@@ -40,4 +40,17 @@ public final class TransactionDatabase {
                 .filter(transaction -> transaction.getListing().getBookRecord().getIsbn().equals(isbn))
                 .findFirst();
     }
+
+    public void markBuyerCompleted(Transaction transaction) {
+        Transaction newTransaction = transaction.toBuilder()
+                .buyerCompleted(true)
+                .build();
+        transactions.remove(transaction);
+        transactions.add(newTransaction);
+    }
+
+    public void removeAllRelated(Transaction transaction) {
+        transactions.removeIf(t -> t.getSellerNetId().equals(transaction.getSellerNetId())
+                && t.getListing().getBookRecord().getIsbn().equals(transaction.getListing().getBookRecord().getIsbn()));
+    }
 }

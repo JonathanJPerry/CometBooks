@@ -10,6 +10,7 @@ import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
+import edu.utdallas.cometbooks.data.transactions.TransactionCompletionResponse;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
 import java.util.List;
@@ -86,6 +87,10 @@ public class Controller {
 
     public List<Transaction> fetchActiveTransactionsInvolving(String netId) {
         return transactionService.fetchActiveTransactionsInvolving(netId);
+    }
+
+    public TransactionCompletionResponse completeTransaction(String netId, Transaction transaction) {
+        return transactionService.completeTransaction(netId, transaction);
     }
 
     public void selectBook(BookRecord b) {
