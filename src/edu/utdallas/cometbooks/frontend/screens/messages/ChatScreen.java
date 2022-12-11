@@ -34,11 +34,19 @@ public class ChatScreen implements Screen {
 
     @Override
     public void handleInput(Scanner scanner, Controller controller, ScreenDisplay display) {
-        System.out.println("What would you like say? To go back, type \"back to messages\".");
+        System.out.println("What would you like say? To go back, type \"back to messages\". To print all messages in this chat again, type \"print all\".");
         String text = scanner.nextLine();
 
         if (text.equals("back to messages")) {
             display.goBack(controller);
+            return;
+        }
+
+        if (text.equals("print all")) {
+            List<Message> messages = controller.fetchMessagesBetween(netId, recipient);
+            for (Message message : messages) {
+                System.out.println(formatMessage(message));
+            }
             return;
         }
 
