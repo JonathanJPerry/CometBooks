@@ -69,7 +69,7 @@ public class Controller {
     }
 
     public void buyBook(BookListingEntry entry, String interestedBuyerNetId) {
-        bookCatalogService.putOnHold(entry);
+        bookCatalogService.putOnHold(entry, interestedBuyerNetId);
         studentService.enableChattingBetween(entry.getSellerNetId(), interestedBuyerNetId);
     }
 

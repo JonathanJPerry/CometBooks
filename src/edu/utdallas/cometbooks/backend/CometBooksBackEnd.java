@@ -63,8 +63,8 @@ public final class CometBooksBackEnd {
     public Controller createControllerInstance() {
         StudentService studentService = StudentService.createWith(STUDENTS_DATABASE);
         BookService bookService = BookService.createWith(BOOK_DATABASE);
-        BookCatalogService bookCatalogService = BookCatalogService.createWith(BOOK_CATALOG);
         TransactionService transactionService = TransactionService.createWith(TRANSACTION_DATABASE);
+        BookCatalogService bookCatalogService = BookCatalogService.createWith(BOOK_CATALOG, transactionService);
 
         OnlineRetailerController onlineRetailer1 = OnlineRetailerController.withMockPrice(150.0);
         OnlineRetailerController onlineRetailer2 = OnlineRetailerController.withMockPrice(100.0);

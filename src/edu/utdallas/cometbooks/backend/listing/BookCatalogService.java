@@ -1,7 +1,9 @@
 package edu.utdallas.cometbooks.backend.listing;
 
+import edu.utdallas.cometbooks.backend.transactions.TransactionService;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.listing.ListingStatus;
+import edu.utdallas.cometbooks.data.transactions.Transaction;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
 import java.util.List;
@@ -10,14 +12,16 @@ import java.util.stream.DoubleStream;
 
 public final class BookCatalogService {
 
-    public static BookCatalogService createWith(BookCatalog catalog) {
-        return new BookCatalogService(catalog);
+    public static BookCatalogService createWith(BookCatalog catalog, TransactionService transactionService) {
+        return new BookCatalogService(catalog, transactionService);
     }
 
     private final BookCatalog catalog;
+    private final TransactionService transactionService;
 
-    private BookCatalogService(BookCatalog catalog) {
+    private BookCatalogService(BookCatalog catalog, TransactionService transactionService) {
         this.catalog = catalog;
+        this.transactionService = transactionService;
     }
 
     public void addListing(BookListingEntry listing) {
@@ -62,8 +66,14 @@ public final class BookCatalogService {
                 .orElse(0.0);
     }
 
-    public void putOnHold(BookListingEntry entry) {
+    public void putOnHold(BookListingEntry entry, String interestedBuyerNetId) {
         catalog.updateStatus(entry, ListingStatus.ON_HOLD);
+
+        transactionService.addTransaction(Transaction.builder()
+                .sellerNetId(entry.getSellerNetId())
+                .buyerNetId(interestedBuyerNetId)
+                .listing(entry)
+                .build());
     }
 
     public void markAvailable(BookListingEntry entry) {
