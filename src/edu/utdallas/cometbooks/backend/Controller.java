@@ -4,6 +4,7 @@ import edu.utdallas.cometbooks.backend.book.BookService;
 import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
 import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.backend.chat.ChatLog;
+import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
@@ -73,6 +74,10 @@ public class Controller {
         return studentService.fetchActiveChatLogs(netId);
     }
 
+    public List<Message> fetchMessagesBetween(String netId1, String netId2) {
+        return studentService.fetchMessagesBetween(netId1, netId2);
+    }
+
     public void selectBook(BookRecord b) {
 
     }
@@ -101,8 +106,8 @@ public class Controller {
         bookCatalog.completeTransaction(book);
     }*/
 
-    public void sendMessage(UTDStudent recipient, String text)  {
-
+    public void sendMessage(String fromNetId, String toNetId, String text) {
+        // todo implement
     }
 
     public void selectCompleteButton(BookListingEntry book) {

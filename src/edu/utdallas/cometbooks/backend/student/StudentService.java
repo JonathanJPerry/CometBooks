@@ -1,6 +1,7 @@
 package edu.utdallas.cometbooks.backend.student;
 
 import edu.utdallas.cometbooks.backend.chat.ChatLog;
+import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.login.LogInResponseType;
 
@@ -56,6 +57,32 @@ public final class StudentService {
         }
 
         return new ArrayList<>(studentOptional.get().getChatLogs().keySet());
+    }
+
+    public List<Message> fetchMessagesBetween(String netId1, String netId2) {
+        Optional<UTDStudent> student1Optional = studentDatabase.getStudent(netId1);
+        Optional<UTDStudent> student2Optional = studentDatabase.getStudent(netId2);
+
+        if (student1Optional.isEmpty()) {
+            throw new IllegalArgumentException("Student 1 does not exist");
+        }
+
+        if (student2Optional.isEmpty()) {
+            throw new IllegalArgumentException("Student 2 does not exist");
+        }
+
+        UTDStudent student1 = student1Optional.get();
+        UTDStudent student2 = student2Optional.get();
+
+        if (!student1.getChatLogs().containsKey(netId2)) {
+            throw new IllegalArgumentException(netId1 + " is not chatting with " + netId2);
+        }
+
+        if (!student2.getChatLogs().containsKey(netId1)) {
+            throw new IllegalArgumentException(netId1 + " is not chatting with " + netId2);
+        }
+
+        return student1.getChatLogs().get(netId2).getMessages();
     }
 
     public List<String> getBooks(String netId) {

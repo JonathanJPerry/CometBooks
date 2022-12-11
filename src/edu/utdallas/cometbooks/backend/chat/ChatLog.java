@@ -1,6 +1,10 @@
 package edu.utdallas.cometbooks.backend.chat;
 
 import edu.utdallas.cometbooks.backend.student.UTDStudent;
+import edu.utdallas.cometbooks.data.chat.Message;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatLog {
     public static ChatLog between(UTDStudent seller, UTDStudent buyer) {
@@ -9,6 +13,7 @@ public class ChatLog {
 
     private final UTDStudent seller;
     private final UTDStudent buyer;
+    private final List<Message> messages = new ArrayList<>();
 
     private ChatLog(UTDStudent seller, UTDStudent buyer) {
         this.seller = seller;
@@ -20,7 +25,10 @@ public class ChatLog {
     }
 
     public void sendMessage(String text)    {
-        Message m = new Message();
-        m.text = text;
+
+    }
+
+    public List<Message> getMessages() {
+        return messages;
     }
 }
