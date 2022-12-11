@@ -35,6 +35,8 @@ public final class ViewListingScreen implements Screen {
             case "1" -> {
                 controller.buyBook(listing, netId);
                 System.out.println("We've let the seller know that you're interested in buying the book!");
+
+                display.goBack(controller);
             }
             case "2" -> display.goBack(controller);
             default -> invalidInput();
