@@ -31,7 +31,7 @@ public final class MainMenuScreen implements Screen {
 
         List<BookListingEntry> bookListings = controller.fetchRelevantListings(netId);
         for (int i = 0; i < bookListings.size(); i++) {
-            bookListingsForOption.put((i + 3) + "", bookListings.get(i));
+            bookListingsForOption.put((i + 4) + "", bookListings.get(i));
         }
     }
 
