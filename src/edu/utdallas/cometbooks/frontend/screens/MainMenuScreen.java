@@ -5,7 +5,7 @@ import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.frontend.screens.listing.MyBooksForSaleScreen;
 import edu.utdallas.cometbooks.frontend.screens.listing.ViewListingScreen;
 import edu.utdallas.cometbooks.frontend.screens.messages.MessagesOverviewScreen;
-import edu.utdallas.cometbooks.frontend.screens.transactions.TransactionsScreen;
+import edu.utdallas.cometbooks.frontend.screens.transactions.TransactionsOverviewScreen;
 
 import java.util.*;
 
@@ -56,7 +56,7 @@ public final class MainMenuScreen implements Screen {
         if (option.equals("1")) {
             display.switchScreen(MyBooksForSaleScreen.createFor(netId), controller);
         } else if (option.equals("2")) {
-            display.switchScreen(TransactionsScreen.createFor(netId), controller);
+            display.switchScreen(TransactionsOverviewScreen.createFor(netId), controller);
         } else if (option.equals("3")) {
             display.switchScreen(MessagesOverviewScreen.createFor(netId), controller);
         } else if (option.equals("4")) {

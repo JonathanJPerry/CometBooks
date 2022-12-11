@@ -8,8 +8,10 @@ import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
+import edu.utdallas.cometbooks.data.transactions.Transaction;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -80,8 +82,9 @@ public class Controller {
         return studentService.fetchLatestMessageBetween(netId1, netId2);
     }
 
-    public List<BookListingEntry> fetchActiveTransactions(String netId) {
-        return bookCatalogService.fetchActiveTransactionsBy(netId);
+    public List<Transaction> fetchActiveTransactions(String netId) {
+        // todo implement
+        return new ArrayList<>();
     }
 
     public void selectBook(BookRecord b) {

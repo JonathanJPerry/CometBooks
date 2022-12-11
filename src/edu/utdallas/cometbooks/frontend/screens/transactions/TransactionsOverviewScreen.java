@@ -2,6 +2,7 @@ package edu.utdallas.cometbooks.frontend.screens.transactions;
 
 import edu.utdallas.cometbooks.backend.Controller;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
+import edu.utdallas.cometbooks.data.transactions.Transaction;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
 import edu.utdallas.cometbooks.frontend.screens.ScreenDisplay;
 
@@ -10,15 +11,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class TransactionsScreen implements Screen {
-    public static TransactionsScreen createFor(String netId) {
-        return new TransactionsScreen(netId);
+public class TransactionsOverviewScreen implements Screen {
+    public static TransactionsOverviewScreen createFor(String netId) {
+        return new TransactionsOverviewScreen(netId);
     }
 
     private final String netId;
-    private final Map<String, BookListingEntry> transactionsForOption = new HashMap<>();
+    private final Map<String, Transaction> transactionsForOption = new HashMap<>();
 
-    private TransactionsScreen(String netId) {
+    private TransactionsOverviewScreen(String netId) {
         this.netId = netId;
     }
 
@@ -26,7 +27,7 @@ public class TransactionsScreen implements Screen {
     public void onOpen(Controller controller) {
         System.out.print("The transactions tab has been open. ");
 
-        List<BookListingEntry> transactions = controller.fetchActiveTransactions(netId);
+        List<Transaction> transactions = controller.fetchActiveTransactions(netId);
         for (int i = 0; i < transactions.size(); i++) {
             transactionsForOption.put((i + 1) + "", transactions.get(i));
         }
@@ -40,7 +41,12 @@ public class TransactionsScreen implements Screen {
         } else {
             int count = transactionsForOption.size();
             System.out.println("You have " + count + " active transactions. What would you like to do?");
-            // todo implement
+
+            for (Map.Entry<String, Transaction> transaction : transactionsForOption.entrySet()) {
+                String with = transaction.getValue().getBuyerNetId().equals(netId) ? transaction.getValue().getBuyerNetId() : transaction.getValue().getSellerNetId();
+                System.out.println(transaction.getKey() + ". View transaction with " + with);
+            }
+
             System.out.println((transactionsForOption.size() + 1) + ". Go back");
         }
 
