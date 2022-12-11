@@ -68,22 +68,4 @@ public class BookCatalog {
     public void remove(BookListingEntry listing)   {
         listings.remove(listing);
     }
-
-    public void PutOnHold(BookListingEntry book)    {
-
-    }
-
-    /*public void completeTransaction(BookListingEntry book)  {
-        if(book.getStatus() == ListingStatus.PENDING)   {
-            //the second of the buyer/seller finished the transaction
-            book.updateStatus(ListingStatus.SOLD);
-        } else if (book.getStatus() == ListingStatus.ONHOLD)   {
-            //the first of the buyer/seller finished the transaction
-            book.updateStatus(ListingStatus.PENDING);
-        }
-    }*/
-
-    public void cancelHold(BookListingEntry book)    {
-
-    }
 }

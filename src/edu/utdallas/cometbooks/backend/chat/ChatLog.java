@@ -20,14 +20,6 @@ public class ChatLog {
         this.buyer = buyer;
     }
 
-    public void enableChattingWith(UTDStudent user) {
-
-    }
-
-    public void sendMessage(String text)    {
-
-    }
-
     public List<Message> getMessages() {
         return messages;
     }

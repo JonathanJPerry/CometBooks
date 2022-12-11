@@ -98,47 +98,7 @@ public class Controller {
         bookCatalogService.markAvailable(transaction.getListing());
     }
 
-    public void selectBook(BookRecord b) {
-
-    }
-
-    public void selectCondition(BookCondition condition) {
-
-    }
-
-    public void enterPrice(double price)    {
-
-    }
-
-    public void enterDescription(String description)    {
-
-    }
-
-    public void selectListForSale(BookListingEntry book)    {
-
-    }
-
-    public void selectUpdateListing(BookListingEntry book)  {
-
-    }
-
-    /*public void selectTrashListing(BookListingEntry book)   {
-        bookCatalog.completeTransaction(book);
-    }*/
-
     public void sendMessage(String fromNetId, String toNetId, String text) {
         studentService.sendMessage(fromNetId, toNetId, text);
-    }
-
-    public void selectCompleteButton(BookListingEntry book) {
-
-    }
-
-    public void selectTransactionsTab() {
-
-    }
-
-    public void selectCancelTransactionButton(BookListingEntry book)  {
-
     }
 }
