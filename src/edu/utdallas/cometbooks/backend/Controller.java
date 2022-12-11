@@ -18,9 +18,6 @@ public class Controller {
         return new Controller(service, bookService, bookCatalogService, onlineRetailers);
     }
 
-    //TODO these aren't present in the diagram.
-    // Should they be converted to singletons?
-    ChatLog chatLog = new ChatLog();
     private final StudentService studentService;
     private final BookService bookService;
     private final BookCatalogService bookCatalogService;
@@ -67,8 +64,9 @@ public class Controller {
         bookCatalogService.removeListing(entry);
     }
 
-    public void buyBook(BookListingEntry entry) {
+    public void buyBook(BookListingEntry entry, String interestedBuyerNetId) {
         bookCatalogService.putOnHold(entry);
+        studentService.enableChattingBetween(entry.getSellerNetId(), interestedBuyerNetId);
     }
 
     public void selectBook(BookRecord b) {

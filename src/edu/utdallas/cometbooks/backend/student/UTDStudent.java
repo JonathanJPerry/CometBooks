@@ -1,7 +1,11 @@
 package edu.utdallas.cometbooks.backend.student;
 
+import edu.utdallas.cometbooks.backend.chat.ChatLog;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UTDStudent {
     public static class UTDStudentBuilder {
@@ -43,12 +47,17 @@ public class UTDStudent {
     private final String password;
     private final String name;
     private final List<String> courseBooks; // a string of ISBNs of books
+    private final Map<String, ChatLog> chatLogs = new HashMap<>();
 
     public UTDStudent(String netId, String password, String name, List<String> courseBooks) {
         this.netId = netId;
         this.password = password;
         this.name = name;
         this.courseBooks = courseBooks;
+    }
+
+    public void enableChattingWith(String buyerNetId, ChatLog chatLog) {
+        chatLogs.put(buyerNetId, chatLog);
     }
 
     public String getNetId() {
