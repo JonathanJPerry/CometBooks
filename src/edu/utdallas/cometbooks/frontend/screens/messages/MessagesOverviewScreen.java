@@ -23,7 +23,7 @@ public class MessagesOverviewScreen implements Screen {
 
     @Override
     public void onOpen(Controller controller) {
-        System.out.println("You are now viewing your messages.");
+        System.out.print("You are now viewing your messages. ");
 
         List<String> recipients = controller.fetchActiveChatLogs(netId);
         for (int i = 0; i < recipients.size(); i++) {
