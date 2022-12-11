@@ -37,7 +37,8 @@ public class MessagesOverviewScreen implements Screen {
             System.out.println("You have no active chats. What would you like to do?");
             System.out.println("1. Go back");
         } else {
-            System.out.println("What would you like to do?");
+            int count = recipientForOption.size();
+            System.out.println("You have " + count + " active chats. What would you like to do?");
             recipientForOption.forEach((option, recipient) -> System.out.println(option + ". Chat with " + recipient));
             System.out.println((recipientForOption.size() + 1) + ". Go back");
         }
