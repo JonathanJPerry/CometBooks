@@ -1,7 +1,6 @@
 package edu.utdallas.cometbooks.frontend.screens.listing;
 
 import edu.utdallas.cometbooks.backend.Controller;
-import edu.utdallas.cometbooks.data.book.BookRecord;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.frontend.screens.Screen;
@@ -15,7 +14,7 @@ public final class EditBookForSaleScreen implements Screen {
     }
 
     private final String netId;
-    private final BookListingEntry listing;
+    private final BookListingEntry originalListing;
 
     private boolean firstTime;
     private BookCondition bookCondition;
@@ -24,11 +23,11 @@ public final class EditBookForSaleScreen implements Screen {
 
     private EditBookForSaleScreen(String netId, BookListingEntry listing) {
         this.netId = netId;
-        this.listing = listing;
+        originalListing = listing;
 
-        bookCondition = listing.getCondition();
-        price = listing.getPrice();
-        description = listing.getDescription();
+        bookCondition = originalListing.getCondition();
+        price = originalListing.getPrice();
+        description = originalListing.getDescription();
     }
 
     @Override
@@ -68,15 +67,15 @@ public final class EditBookForSaleScreen implements Screen {
 
         String choice = scanner.nextLine();
         if (!firstTime && choice.equals("1")) {
-            BookListingEntry bookListingEntry = BookListingEntry.builder()
+            BookListingEntry updatedListing = BookListingEntry.builder()
                     .sellerNetId(netId)
-                    .book(listing.getBookRecord())
+                    .book(originalListing.getBookRecord())
                     .condition(bookCondition)
                     .description(description)
                     .price(price)
                     .build();
 
-            // todo implement editing
+            controller.editListing(originalListing, updatedListing);
             System.out.println("Successfully edited book for sale!");
             System.out.println();
 
@@ -116,12 +115,12 @@ public final class EditBookForSaleScreen implements Screen {
         }
 
         bookCondition = bookConditionOptional.get();
-        System.out.println("You chose to sell " + listing.getBookRecord().getTitle() + " in " + bookCondition.getDisplayName().toLowerCase() + " condition.");
+        System.out.println("You chose to sell " + originalListing.getBookRecord().getTitle() + " in " + bookCondition.getDisplayName().toLowerCase() + " condition.");
         System.out.println();
     }
 
     private void inquireForPrice(Scanner scanner, Controller controller, ScreenDisplay display) {
-        double suggestedPrice = controller.fetchSuggestedPrice(listing.getBookRecord().getIsbn());
+        double suggestedPrice = controller.fetchSuggestedPrice(originalListing.getBookRecord().getIsbn());
         System.out.print("Enter the price you want to sell the book for. We suggest you sell it for $"
                 + String.format("%.2f", suggestedPrice) + ". If you aren't interested anymore, type \"go back\": ");
 
@@ -139,7 +138,7 @@ public final class EditBookForSaleScreen implements Screen {
             return;
         }
 
-        System.out.println("You chose to sell " + listing.getBookRecord().getTitle() + " for $" + String.format("%.2f", price) + ".");
+        System.out.println("You chose to sell " + originalListing.getBookRecord().getTitle() + " for $" + String.format("%.2f", price) + ".");
         System.out.println();
     }
 
@@ -153,7 +152,7 @@ public final class EditBookForSaleScreen implements Screen {
         }
 
         description = descriptionString;
-        System.out.println("You chose to sell " + listing.getBookRecord().getTitle() + " with the description \"" + description + "\".");
+        System.out.println("You chose to sell " + originalListing.getBookRecord().getTitle() + " with the description \"" + description + "\".");
         System.out.println();
     }
 }

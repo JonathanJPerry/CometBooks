@@ -59,6 +59,10 @@ public class Controller {
         bookCatalogService.addListing(entry);
     }
 
+    public void editListing(BookListingEntry original, BookListingEntry updated) {
+        bookCatalogService.editListing(original, updated);
+    }
+
     public void buyBook(BookListingEntry entry) {
         bookCatalogService.putOnHold(entry);
     }

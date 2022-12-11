@@ -29,6 +29,11 @@ public class BookCatalog {
         listings.add(listing);
     }
 
+    public void replaceListing(BookListingEntry original, BookListingEntry updated) {
+        listings.remove(original);
+        listings.add(updated);
+    }
+
     public List<BookListingEntry> fetchActiveListingsBy(String netId) {
         return listings.stream()
                 .filter(listing -> listing.getSellerNetId().equals(netId))

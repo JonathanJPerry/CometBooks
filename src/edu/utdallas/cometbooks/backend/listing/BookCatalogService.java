@@ -24,6 +24,10 @@ public final class BookCatalogService {
         catalog.addListing(listing);
     }
 
+    public void editListing(BookListingEntry original, BookListingEntry updated) {
+        catalog.replaceListing(original, updated);
+    }
+
     public List<BookListingEntry> fetchActiveListingsBy(String netId) {
         return catalog.fetchActiveListingsBy(netId);
     }
