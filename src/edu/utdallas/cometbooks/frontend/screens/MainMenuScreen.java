@@ -31,7 +31,7 @@ public final class MainMenuScreen implements Screen {
 
         List<BookListingEntry> bookListings = controller.fetchRelevantListings(netId);
         for (int i = 0; i < bookListings.size(); i++) {
-            bookListingsForOption.put((i + 4) + "", bookListings.get(i));
+            bookListingsForOption.put((i + 5) + "", bookListings.get(i));
         }
     }
 
@@ -40,7 +40,8 @@ public final class MainMenuScreen implements Screen {
         System.out.println("Select a menu option to choose which tab to go to:");
         System.out.println("1. My Books for Sale");
         System.out.println("2. Transactions");
-        System.out.println("3. Log out");
+        System.out.println("3. View active messages");
+        System.out.println("4. Log out");
 
         if (bookListingsForOption.size() > 0) {
             System.out.println();
@@ -56,6 +57,8 @@ public final class MainMenuScreen implements Screen {
         } else if (option.equals("2")) {
             display.switchScreen(TransactionsScreen.createFor(netId), controller);
         } else if (option.equals("3")) {
+            System.out.println("This feature is not yet implemented.");
+        } else if (option.equals("4")) {
             System.out.println("You have been logged out.");
             System.out.println();
             display.goBack(controller);
