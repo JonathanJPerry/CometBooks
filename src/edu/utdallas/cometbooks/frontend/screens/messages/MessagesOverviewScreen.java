@@ -51,8 +51,8 @@ public class MessagesOverviewScreen implements Screen {
         } else {
             String option = scanner.nextLine();
             if (recipientForOption.containsKey(option)) {
-                System.out.println("This feature hasn't been implement yet.");
-                // todo implement
+                String recipient = recipientForOption.get(option);
+                display.switchScreen(ChatScreen.between(netId, recipient), controller);
             } else if (option.equals((recipientForOption.size() + 1) + "")) {
                 display.goBack(controller);
             } else {

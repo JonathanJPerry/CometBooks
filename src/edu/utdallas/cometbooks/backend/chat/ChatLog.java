@@ -31,4 +31,8 @@ public class ChatLog {
     public List<Message> getMessages() {
         return messages;
     }
+
+    public void add(Message message) {
+        messages.add(message);
+    }
 }

@@ -5,10 +5,10 @@ import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.data.login.LogInResponseType;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public final class StudentService {
     public static StudentService createWith(StudentDatabase database) {
@@ -83,6 +83,64 @@ public final class StudentService {
         }
 
         return student1.getChatLogs().get(netId2).getMessages();
+    }
+
+    public void sendMessage(String from, String to, String text) {
+        Optional<UTDStudent> fromOptional = studentDatabase.getStudent(from);
+        Optional<UTDStudent> toOptional = studentDatabase.getStudent(to);
+
+        if (fromOptional.isEmpty()) {
+            throw new IllegalArgumentException(from + " is not a student");
+        }
+
+        if (toOptional.isEmpty()) {
+            throw new IllegalArgumentException(to + " is not a student");
+        }
+
+        UTDStudent fromStudent = fromOptional.get();
+
+        if (!fromStudent.getChatLogs().containsKey(to)) {
+            throw new IllegalArgumentException(from + " is not chatting with " + to);
+        }
+
+        if (!toOptional.get().getChatLogs().containsKey(from)) {
+            throw new IllegalArgumentException(to + " is not chatting with " + from);
+        }
+
+        Message message = Message.builder()
+                .fromNetId(from)
+                .text(text)
+                .date(LocalDateTime.now())
+                .build();
+
+        fromStudent.getChatLogs().get(to).add(message);
+    }
+
+    public Message fetchLatestMessageBetween(String netId1, String netId2) {
+        Optional<UTDStudent> student1Optional = studentDatabase.getStudent(netId1);
+        Optional<UTDStudent> student2Optional = studentDatabase.getStudent(netId2);
+
+        if (student1Optional.isEmpty()) {
+            throw new IllegalArgumentException("Student 1 does not exist");
+        }
+
+        if (student2Optional.isEmpty()) {
+            throw new IllegalArgumentException("Student 2 does not exist");
+        }
+
+        UTDStudent student1 = student1Optional.get();
+        UTDStudent student2 = student2Optional.get();
+
+        if (!student1.getChatLogs().containsKey(netId2)) {
+            throw new IllegalArgumentException(netId1 + " is not chatting with " + netId2);
+        }
+
+        if (!student2.getChatLogs().containsKey(netId1)) {
+            throw new IllegalArgumentException(netId1 + " is not chatting with " + netId2);
+        }
+
+        List<Message> messages = student1.getChatLogs().get(netId2).getMessages();
+        return messages.get(messages.size() - 1);
     }
 
     public List<String> getBooks(String netId) {

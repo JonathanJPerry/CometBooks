@@ -24,9 +24,10 @@ public class ChatScreen implements Screen {
     @Override
     public void onOpen(Controller controller) {
         List<Message> messages = controller.fetchMessagesBetween(netId, recipient);
+        System.out.println("You are now chatting with \"" + recipient + "\".");
+        System.out.println();
         for (Message message : messages) {
-            // todo add date to this
-            System.out.println(message.getFromNetId() + ": " + message.getText());
+            System.out.println(formatMessage(message));
         }
         System.out.println();
     }
@@ -41,6 +42,35 @@ public class ChatScreen implements Screen {
             return;
         }
 
+        sendConfirmationMessage(text);
+
+        String option = scanner.nextLine();
+        while (!option.equals("1")) {
+            if (option.equals("2")) {
+                return;
+            }
+            invalidInput();
+
+            sendConfirmationMessage(text);
+            option = scanner.nextLine();
+        }
+
         controller.sendMessage(netId, recipient, text);
+
+        Message message = controller.fetchLatestMessageBetween(netId, recipient);
+        System.out.println();
+        System.out.println(formatMessage(message));
+        System.out.println();
+    }
+
+    private String formatMessage(Message message) {
+        // todo add date to this
+        return "\t" + message.getFromNetId() + ": " + message.getText();
+    }
+
+    private void sendConfirmationMessage(String text) {
+        System.out.println("Are you sure you want to say \"" + text + "\" to " + recipient + "?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
     }
 }

@@ -3,12 +3,10 @@ package edu.utdallas.cometbooks.backend;
 import edu.utdallas.cometbooks.backend.book.BookService;
 import edu.utdallas.cometbooks.backend.listing.BookCatalogService;
 import edu.utdallas.cometbooks.data.book.BookRecord;
-import edu.utdallas.cometbooks.backend.chat.ChatLog;
 import edu.utdallas.cometbooks.data.chat.Message;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.listing.BookCondition;
 import edu.utdallas.cometbooks.backend.student.StudentService;
-import edu.utdallas.cometbooks.backend.student.UTDStudent;
 import edu.utdallas.cometbooks.data.login.LogInResponse;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
@@ -78,6 +76,10 @@ public class Controller {
         return studentService.fetchMessagesBetween(netId1, netId2);
     }
 
+    public Message fetchLatestMessageBetween(String netId1, String netId2) {
+        return studentService.fetchLatestMessageBetween(netId1, netId2);
+    }
+
     public void selectBook(BookRecord b) {
 
     }
@@ -107,7 +109,7 @@ public class Controller {
     }*/
 
     public void sendMessage(String fromNetId, String toNetId, String text) {
-        // todo implement
+        studentService.sendMessage(fromNetId, toNetId, text);
     }
 
     public void selectCompleteButton(BookListingEntry book) {
