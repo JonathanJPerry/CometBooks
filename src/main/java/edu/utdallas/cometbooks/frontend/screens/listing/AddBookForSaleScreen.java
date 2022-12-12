@@ -150,6 +150,7 @@ public final class AddBookForSaleScreen implements Screen {
         try {
             price = Double.parseDouble(priceString);
         } catch (NumberFormatException e) {
+            price = null;
             System.out.println("You entered an invalid price. Try again.");
             return;
         }
