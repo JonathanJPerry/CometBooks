@@ -24,6 +24,7 @@ public class TransactionsOverviewScreen implements Screen {
 
     @Override
     public void onOpen(Controller controller) {
+        transactionsForOption.clear();
         System.out.print("The transactions tab has been open. ");
 
         List<Transaction> transactions = controller.fetchActiveTransactionsInvolving(netId);

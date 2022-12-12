@@ -28,6 +28,8 @@ public final class AddBookForSaleScreen implements Screen {
 
     @Override
     public void onOpen(Controller controller) {
+        bookRecordForChoice.clear();
+
         List<BookRecord> books = controller.fetchRelevantBooks(netId);
         for (int i = 0; i < books.size(); i++) {
             bookRecordForChoice.put(i + 1, books.get(i));
