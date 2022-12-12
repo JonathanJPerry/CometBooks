@@ -90,7 +90,7 @@ public class Controller {
     }
 
     public TransactionCompletionResponse completeTransaction(String netId, Transaction transaction) {
-        return transactionService.completeTransaction(netId, transaction);
+        return bookCatalogService.completeTransaction(netId, transaction);
     }
 
     public void cancelTransaction(Transaction transaction) {

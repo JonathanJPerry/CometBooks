@@ -4,6 +4,7 @@ import edu.utdallas.cometbooks.backend.transactions.TransactionService;
 import edu.utdallas.cometbooks.data.listing.BookListingEntry;
 import edu.utdallas.cometbooks.data.listing.ListingStatus;
 import edu.utdallas.cometbooks.data.transactions.Transaction;
+import edu.utdallas.cometbooks.data.transactions.TransactionCompletionResponse;
 import edu.utdallas.cometbooks.online_retailer.OnlineRetailerController;
 
 import java.util.List;
@@ -74,6 +75,14 @@ public final class BookCatalogService {
                 .buyerNetId(interestedBuyerNetId)
                 .listing(entry)
                 .build());
+    }
+
+    public TransactionCompletionResponse completeTransaction(String netId, Transaction transaction) {
+        TransactionCompletionResponse response = transactionService.completeTransaction(netId, transaction);
+        if (response == TransactionCompletionResponse.SUCCESS) {
+            catalog.updateStatus(transaction.getListing(), ListingStatus.SOLD);
+        }
+        return response;
     }
 
     public void markAvailable(BookListingEntry entry) {
