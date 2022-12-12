@@ -42,7 +42,7 @@ public class TransactionsOverviewScreen implements Screen {
             System.out.println("You have " + count + " active transactions. What would you like to do?");
 
             for (Map.Entry<String, Transaction> transaction : transactionsForOption.entrySet()) {
-                String with = transaction.getValue().getBuyerNetId().equals(netId) ? transaction.getValue().getBuyerNetId() : transaction.getValue().getSellerNetId();
+                String with = transaction.getValue().getBuyerNetId().equals(netId) ? transaction.getValue().getSellerNetId() : transaction.getValue().getBuyerNetId();
                 System.out.println(transaction.getKey() + ". View transaction with " + with);
             }
 
