@@ -25,15 +25,12 @@ public class TransactionsOverviewScreen implements Screen {
     @Override
     public void onOpen(Controller controller) {
         System.out.print("The transactions tab has been open. ");
-
-        List<Transaction> transactions = controller.fetchActiveTransactionsInvolving(netId);
-        for (int i = 0; i < transactions.size(); i++) {
-            transactionsForOption.put((i + 1) + "", transactions.get(i));
-        }
     }
 
     @Override
     public void handleInput(Scanner scanner, Controller controller, ScreenDisplay display) {
+        fetchTransactions(controller);
+
         if (transactionsForOption.isEmpty()) {
             System.out.println("You have no active transactions. What would you like to do?");
             System.out.println("1. Go back");
@@ -64,6 +61,15 @@ public class TransactionsOverviewScreen implements Screen {
             } else {
                 invalidInput();
             }
+        }
+    }
+
+    private void fetchTransactions(Controller controller) {
+        transactionsForOption.clear();
+
+        List<Transaction> transactions = controller.fetchActiveTransactionsInvolving(netId);
+        for (int i = 0; i < transactions.size(); i++) {
+            transactionsForOption.put((i + 1) + "", transactions.get(i));
         }
     }
 }
