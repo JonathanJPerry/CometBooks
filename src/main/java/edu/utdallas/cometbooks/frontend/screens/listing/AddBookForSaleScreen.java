@@ -156,7 +156,7 @@ public final class AddBookForSaleScreen implements Screen {
         System.out.print("Enter the price you want to sell the book for. We suggest you sell it for $"
                 + String.format("%.2f", suggestedPrice) + ". If you aren't interested anymore, type \"go back\": ");
 
-        String priceString = scanner.nextLine();
+        String priceString = scanner.nextLine().replace("$", "");
 
         if (priceString.equalsIgnoreCase("go back")) {
             display.goBack(controller);
