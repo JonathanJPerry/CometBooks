@@ -28,11 +28,10 @@ public final class CometBooksBackEnd {
                     .courseBook("978-0-321-87759-8")
                     .build(),
             UTDStudent.builder()
-                    .netId("jjp000000")
+                    .netId("jjp160630")
                     .password("password")
                     .name("Jonathan J. Perry")
                     .courseBook("978-0-321-87758-1")
-                    .courseBook("978-0-321-87759-8")
                     .build()
     );
 
