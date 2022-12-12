@@ -23,6 +23,11 @@ public final class ViewListingScreen implements Screen {
     @Override
     public void onOpen(Controller controller) {
         System.out.println("You are now viewing the listing by \"" + listing.getSellerNetId() + "\" for \"" + listing.getBookRecord().getTitle() + "\".");
+        System.out.println();
+        System.out.println("Book condition: " + listing.getCondition().getDisplayName());
+        System.out.println("Book description: \"" + listing.getDescription() + "\"");
+        System.out.printf("Book price: %.2f\n", listing.getPrice());
+        System.out.println();
     }
 
     @Override

@@ -56,9 +56,9 @@ public final class MainMenuScreen implements Screen {
         if (bookListingsForOption.size() > 0) {
             System.out.println();
             System.out.println("The following books are for sale which may be of interest to you as well:");
-            bookListingsForOption.forEach((option, bookListing) ->
-                    System.out.println(option + ". View listing by seller \"" + bookListing.getSellerNetId() +
-                            "\" for \"" + bookListing.getBookRecord().getTitle() + "\""));
+            bookListingsForOption.forEach((option, listing) ->
+                    System.out.println(option + ". View listing by seller \"" + listing.getSellerNetId() +
+                            "\" for \"" + listing.getBookRecord().getTitle() + "\" ($" + String.format("%.2f", listing.getPrice()) + ")"));
         }
 
         String option = scanner.nextLine();
