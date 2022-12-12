@@ -39,12 +39,24 @@ public final class EditBookForSaleScreen implements Screen {
     public void handleInput(Scanner scanner, Controller controller, ScreenDisplay display) {
         if (bookCondition == null) {
             inquireForBookCondition(scanner, controller, display);
+
+            if (bookCondition == null) {
+                return;
+            }
         }
         if (price == null) {
             inquireForPrice(scanner, controller, display);
+
+            if (price == null) {
+                return;
+            }
         }
         if (description == null) {
             inquireForDescription(scanner, controller, display);
+
+            if (description == null) {
+                return;
+            }
         }
 
         if (firstTime) {

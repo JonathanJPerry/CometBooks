@@ -38,15 +38,31 @@ public final class AddBookForSaleScreen implements Screen {
     public void handleInput(Scanner scanner, Controller controller, ScreenDisplay display) {
         if (bookRecord == null) {
             inquireForBook(scanner, controller, display);
+
+            if (bookRecord == null) {
+                return;
+            }
         }
         if (bookCondition == null) {
             inquireForBookCondition(scanner, controller, display);
+
+            if (bookCondition == null) {
+                return;
+            }
         }
         if (price == null) {
             inquireForPrice(scanner, controller, display);
+
+            if (price == null) {
+                return;
+            }
         }
         if (description == null) {
             inquireForDescription(scanner, controller, display);
+
+            if (description == null) {
+                return;
+            }
         }
 
         System.out.println("Are you sure you want to add this book for sale?");
@@ -150,7 +166,6 @@ public final class AddBookForSaleScreen implements Screen {
         try {
             price = Double.parseDouble(priceString);
         } catch (NumberFormatException e) {
-            price = null;
             System.out.println("You entered an invalid price. Try again.");
             return;
         }
